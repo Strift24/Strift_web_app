@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.react-tel-input .form-control{
+    @apply !w-full py-6 !text-base bg-black;
+
+}
+
+
+.react-tel-input .flag-dropdown{
+    @apply bg-black
+}
+
+.otp-container{
+    @apply flex justify-between gap-2;
+}
+
+.otp-container input{
+    @apply !mr-0 flex-1 p-4 py-5 outline-none rounded-lg;
+}
+
+.PhoneInputCountryIcon {
+    background-color: transparent  !important; /* Change the background color of the flag icon */
+}
+
+.PhoneInputCountryIcon--square {
+    background-color: transparent  !important; /* Change the background fill color of the flag container */
+}
+
+.label-class {
+    background-color: transparent;
+}
+
+body{
+    font-family: "Jost", sans-serif;
+}
