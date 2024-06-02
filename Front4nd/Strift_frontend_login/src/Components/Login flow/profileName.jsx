@@ -33,7 +33,7 @@ function ProfileName() {
                 <input className='w-full bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500'placeholder='last name' type="text" name="name" id="" />
                 
             </div>
-            <Link to="">
+            <Link to="/discover">
             <div className='text-center'>
                 <button className='bg-black px-[36px] py-2 rounded-lg shadow-lg text-white'>Continue</button>
             </div>

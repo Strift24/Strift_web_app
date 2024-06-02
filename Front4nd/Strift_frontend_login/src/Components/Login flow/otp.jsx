@@ -6,8 +6,7 @@ import { useState } from "react";
 
 function Otp() {
   const [otp, setOtp] = useState("");
-  const [showOtp , setShowOtp] = useState(false)
-
+  const [showOtp, setShowOtp] = useState(false);
 
   return (
     <main className="flex items-center justify-center h-screen">
@@ -17,7 +16,6 @@ function Otp() {
       >
         <div className="w-full h-screen flex flex-col items-center justify-center gap-2">
           <div className="flex flex-col justify-center items-center">
-   
             <svg
               width="37"
               height="37"
@@ -28,7 +26,7 @@ function Otp() {
               <g id="dialpad">
                 <mask
                   id="mask0_1856_8592"
-                  style={{maskType:"alpha"}}
+                  style={{ maskType: "alpha" }}
                   maskUnits="userSpaceOnUse"
                   x="0"
                   y="0"
@@ -53,16 +51,18 @@ function Otp() {
             </svg>
 
             <label
-              htmlFor="ph"
-              className="mt-3 font-normal text-l text-white text-center"
+              htmlFor="otp"
+              className="mt-3 font-normal text-lg text-white text-center"
             >
               Enter the verification code sent to
               <br />
               <span className="font-semibold">+91 9891666666</span>
             </label>
-          
+
             <OtpInput
-              className="otp-container mt-8"
+              id="otp"
+              name="otp"
+              className="otp-container mt-8 mb-4"
               value={otp}
               onChange={setOtp}
               OTPLength={6}
@@ -70,43 +70,43 @@ function Otp() {
               disabled={false}
               autoFocus
               inputMode="numeric"
-              inputStyle={{
-                backgroundColor: 'black',
-                color: 'white',
-                textAlign: 'center',
-              }}
-
-            ></OtpInput>
+              
+            />
           </div>
           <Link to="/email">
             <button>
-                <div className="p-2 mt-2 text-sm text-white rounded-xl bg-slate-800">
+              <div className="p-2 px-6 opacity-[0.8] mt-2 text-base text-white rounded-xl bg-black">
                 Continue
-                </div>
+              </div>
             </button>
           </Link>
-          <div className="mr-[68px] mt-4">
-            <button className="text-[12px]  w-full flex gap-1 items-center justify-center py-2.5 text-white rounded">
+          <div className="mr-[90px] mt-[20px]">
+            <div className="text-[15px]  w-full flex gap-1 items-center justify-center py-2.5 text-white rounded">
               <div className="flex gap-2 flex-col">
-                <div>Having issues? Resend in 19s</div>
+                <div>
+                  Having issues?
+                  <button className="ml-1">Resend in 19s</button>
                 </div>
-                </button>
-                <button className="flex gap-2 ">
-                  <svg
-                    className="w-[15px]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="
-                        white"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M21.384,17.752a2.108,2.108,0,0,1-.522,3.359,7.543,7.543,0,0,1-5.476.642C10.5,20.523,3.477,13.5,2.247,8.614a7.543,7.543,0,0,1,.642-5.476,2.108,2.108,0,0,1,3.359-.522L8.333,4.7a2.094,2.094,0,0,1,.445,2.328A3.877,3.877,0,0,1,8,8.2c-2.384,2.384,5.417,10.185,7.8,7.8a3.877,3.877,0,0,1,1.173-.781,2.092,2.092,0,0,1,2.328.445Z" />
-                  </svg>
-                  <span className="text-[12px] text-white font-medium">Call me instead </span>
-                </button>
               </div>
+            </div>
+            <button className="flex gap-2 items-center   ">
+              <svg
+                className="w-[15px]"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="
+                        white"
+                viewBox="0 0 24 24"
+              >
+                <path d="M21.384,17.752a2.108,2.108,0,0,1-.522,3.359,7.543,7.543,0,0,1-5.476.642C10.5,20.523,3.477,13.5,2.247,8.614a7.543,7.543,0,0,1,.642-5.476,2.108,2.108,0,0,1,3.359-.522L8.333,4.7a2.094,2.094,0,0,1,.445,2.328A3.877,3.877,0,0,1,8,8.2c-2.384,2.384,5.417,10.185,7.8,7.8a3.877,3.877,0,0,1,1.173-.781,2.092,2.092,0,0,1,2.328.445Z" />
+              </svg>
+
+              <span className="text-[14px] text-white font-medium">
+                Call me instead{" "}
+              </span>
+            </button>
           </div>
         </div>
-      
+      </div>
     </main>
   );
 }

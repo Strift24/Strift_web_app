@@ -3,36 +3,51 @@
 @tailwind utilities;
 
 
-.react-tel-input .form-control{
+.react-tel-input .form-control {
     @apply !w-full py-6 !text-base bg-black;
 
 }
 
 
-.react-tel-input .flag-dropdown{
+.react-tel-input .flag-dropdown {
     @apply bg-black
 }
 
-.otp-container{
-    @apply flex justify-between gap-2;
+.otp-container {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    margin-left: 20px;
 }
 
-.otp-container input{
-    @apply !mr-0 flex-1 p-4 py-5 outline-none rounded-lg;
+.otp-container input {
+    height: 100px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: black;
+    opacity: 0.6;
+    color: white;
+    font-size: 25px;
+    margin: -10px;
+    text-align: center;
 }
+
 
 .PhoneInputCountryIcon {
-    background-color: transparent  !important; /* Change the background color of the flag icon */
+    background-color: transparent !important;
+    /* Change the background color of the flag icon */
 }
 
 .PhoneInputCountryIcon--square {
-    background-color: transparent  !important; /* Change the background fill color of the flag container */
+    background-color: transparent !important;
+    /* Change the background fill color of the flag container */
 }
 
 .label-class {
     background-color: transparent;
 }
 
-body{
+body {
     font-family: "Jost", sans-serif;
 }

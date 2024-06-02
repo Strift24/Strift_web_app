@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import Login1 from './Components/login1.jsx'
-import Otp from './Components/otp.jsx'
-import Email from './Components/email.jsx'
-import ProfileName from './Components/profileName.jsx'
+import Login1 from './Components/Login flow/login1.jsx'
+import Otp from './Components/Login flow/otp.jsx'
+import Email from './Components/Login flow/email.jsx'
+import ProfileName from './Components/Login flow/profileName.jsx'
+import Discover from './Components/Login flow/discover.jsx'
+
 
 
 
@@ -17,6 +19,7 @@ const router = createBrowserRouter(
       <Route path='otp' element={<Otp />} />
       <Route path='email' element={<Email />} />
       <Route path='profileName' element={<ProfileName />} />
+      <Route path='discover' element={<Discover/>}/>
     </Route>
   )
 )
