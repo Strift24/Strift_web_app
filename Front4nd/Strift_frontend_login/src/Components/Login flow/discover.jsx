@@ -76,19 +76,17 @@ function Discover() {
         "https://s3-alpha-sig.figma.com/img/34d3/86e5/42610dc802dad82c4fee41d32ea223d9?Expires=1717977600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ASKur-~Q3Dntq35qylb6p2f1Q0zrXp1B1U27tX8uhiT6u7a1mNtryG4x9hJ33CGQcoPGE3i44BHsPJ95Q8d6RtC9mHRt6YZ57-iipH5bm6ebjTW1necIC5dpbiRUJe7QogcEGFQSA7z0Jt~0JgqSPRUvyuovg-g8eliBbC57AGzBmROQ2DRkUrm~wbrPioV2QFgKEm1RmRuw4CBHzf9-IZu6jH-gUeLx1o~5acpKQnbiugqAARXswzLF6u9VusFQ5CqhI0dMAOFpNBxGOJS-JfAYDti5L2cQ9rA8XlkV5UYh9StjRTCQHZLIjY1o94toRI2I1p3m~~PvqeZOpxhtvQ__",
       ],
     },
-    
   ];
 
   const handleSelect = (storeid) => {
     setSelectedStores((prevSelectedStores) => {
       if (prevSelectedStores.includes(storeid)) {
-        return prevSelectedStores.filter(id => id!== storeid)
+        return prevSelectedStores.filter((id) => id !== storeid);
       } else {
-        return [ ...prevSelectedStores, storeid ]
+        return [...prevSelectedStores, storeid];
       }
-    } )
-
-  }
+    });
+  };
 
   return (
     <>
@@ -117,23 +115,29 @@ function Discover() {
           </div>
 
           <div className="flex flex-col gap-2 mb-[50px]">
-            {storesData.map( (store) => (
+            {storesData.map((store) => (
               <Store
-              key={store.id}
-              store={store}
-              isSelected={selectedStores.includes(store.id)}
-              onSelect={handleSelect}
+                key={store.id}
+                store={store}
+                isSelected={selectedStores.includes(store.id)}
+                onSelect={handleSelect}
               />
-            ) ) }
+            ))}
           </div>
 
-          <div className="fixed bottom-4 w-full flex justify-center">  
-            <button 
-            className={` px-[36px] py-2 rounded-lg shadow-lg ${selectedStores.length >= 3 ? 'bg-black text-white cursor-pointer' : 'bg-gray-300 text-gray-500 cursor-not-allowed' } `}
-            disabled={selectedStores.length<3}
-            >
-              Continue ({selectedStores.length})
-            </button>
+          <div className="fixed bottom-4 w-full flex justify-center">
+            <Link to="/buyer/home">
+              <button
+                className={` px-[36px] py-2 rounded-lg shadow-lg ${
+                  selectedStores.length >= 3
+                    ? "bg-black text-white cursor-pointer"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                } `}
+                disabled={selectedStores.length < 3}
+              >
+                Continue ({selectedStores.length})
+              </button>
+            </Link>
           </div>
         </div>
       </div>

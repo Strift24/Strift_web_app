@@ -5,43 +5,35 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { Link } from "react-router-dom";
 
-
-import  { useEffect } from 'react';
-import {auth,provider} from "./config";
-import {signInWithPopup} from 'firebase/auth';
+import { useEffect } from "react";
+import { auth, provider } from "./config";
+import { signInWithPopup } from "firebase/auth";
 import ProfileName from "./profileName";
-
-  
 
 function Login1() {
   const [ph, setPh] = useState("");
-  const [value,setValue] = useState('')
-    const  handleClick =()=>{
-        signInWithPopup(auth,provider).then((data)=>{
-            setValue(data.user.email)
-            localStorage.setItem("email",data.user.email)
-        })
-    } 
+  const [value, setValue] = useState("");
+  const handleClick = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      setValue(data.user.email);
+      localStorage.setItem("email", data.user.email);
+    });
+  };
 
-
-
-    useEffect(() => {
-  setValue(localStorage.getItem('email'));
-}, []);
-
-
-
+  useEffect(() => {
+    setValue(localStorage.getItem("email"));
+  }, []);
 
   return (
-    <>  
+    <>
       <div className=" w-full flex justify-center items-center relative ">
-        <h1 className=" text-white text-[70px] font-bold relative top-[210px] left-[7px]"> [strift] </h1>
+        <h1 className=" text-white text-[70px] font-bold relative top-[210px] left-[7px]">
+          {" "}
+          [strift]{" "}
+        </h1>
       </div>
 
-
       <div className="h-[45%]  absolute bottom-[0px] w-full">
-
-
         <div className="flex justify-center items-center gap-4 flex-col h-[50%] bg-black bg-opacity-[40%] backdrop-blur-lg rounded-t-3xl ">
           <section
             id="LoginPage"
@@ -71,18 +63,23 @@ function Login1() {
                     htmlFor=""
                     className="font-bold text-l text-white text-center"
                   ></label>
+
                   <PhoneInput
                     className="cursor-pointer bg-tranparent rounded-lg"
                     country={"in"}
                     value={ph}
                     onChange={setPh}
-                    containerStyle={{ backgroundColor: "black", zIndex: 9999 }}
+                    containerStyle={{
+                      backgroundColor: "transparent",
+                      zIndex: 9999,
+                    }}
                     inputStyle={{
                       backgroundColor: "white", // or 'black' for black background
                       color: "black", // text color
-                      fontWeight: 700,
-                      borderColor: "white",
-                      boxShadow: "5px",
+                      fontWeight: 100,
+                      borderColor: "transparent",
+                      boxShadow: "none",
+                      paddingLeft: "48px",
                       // borderRadius: "",
                     }}
                     searchStyle={{ backgroundColor: "black", zIndex: 9999 }}
@@ -90,12 +87,14 @@ function Login1() {
                       borderTopLeftRadius: "10px", // Adjust the top-left border radius
                       borderTopRightRadius: "10px",
                       color: "black",
-                      backgroundColor: "#8c8888c4",
+                      backgroundColor: "white",
                       top: "-180px", // Adjust this value to position the dropdown above the input field
                       maxHeight: "150px", // Limit dropdown height if needed
                       overflowY: "auto", // Enable scrolling if dropdown height exceeds maxHeight
                     }}
-                    buttonStyle={{ backgroundColor: "white" }}
+                    buttonStyle={{
+                      backgroundColor: "white",
+                    }}
                   />
 
                   <Link to="/otp">
@@ -119,18 +118,19 @@ function Login1() {
         </div>
 
         <div className="z-[-1] h-[50%] bg-slate-200 rounded-t-xl flex flex-col gap-3 justify-center items-center  bg-opacity-[30%] backdrop-blur-lg">
-
-          <button onClick={handleClick} className="flex justify-center items-center text-xl z-50 font-semibold g-signin2 w-[338px] bg-white text-gray-800 rounded-md shadow-md p-2">
-            <img
-              className="w-[20px] mr-[20px]"
-              src="https://www.svgrepo.com/show/50809/google.svg"
-              alt=""
-            />
-            <div className="mr-[12px]">Sign in with Google</div>
-          </button>
-
-
-          
+          <Link to="/phone">
+            <button
+              onClick={handleClick}
+              className="flex justify-center items-center text-xl z-50 font-semibold g-signin2 w-[338px] bg-white text-gray-800 rounded-md shadow-md p-2"
+            >
+              <img
+                className="w-[20px] mr-[20px]"
+                src="https://www.svgrepo.com/show/50809/google.svg"
+                alt=""
+              />
+              <div className="mr-[12px]">Sign in with Google</div>
+            </button>
+          </Link>
 
           <div className="z-[99] text-xs text-center w-[338px] pt-2 text-white font-normal ">
             By continuing, you agree to our{" "}
@@ -138,8 +138,6 @@ function Login1() {
             <span className="font-bold">Privacy Policy</span>.
           </div>
         </div>
-
-        
       </div>
     </>
   );
