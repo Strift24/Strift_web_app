@@ -2,21 +2,22 @@ import React, { useState } from "react";
 import CustomSlider from "./customSlider";
 
 function Post({ storeData }) {
+
   const [liked, setLiked] = useState(false);
-  const handleLike = () => {
+  const handleClick = () => {
     setLiked(!liked);
   };
 
   return (
     <div className="bg-white flex-col gap-0 w-full h-auto mb-3">
       <div id="image slider" className="h-[474px] flex-shrink-0">
-        <CustomSlider storeimages={storeData.images} />
+        <CustomSlider  storeimages={storeData.images} />
       </div>
 
-      <div className="py-1 px-3 flex-col gap-2 w-full">
+      <div className="py-1 px-3 flex-col w-full">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="flex-shrink-0">
+          <div className=" relative flex items-center gap-2">
+            <div className="absolute top-[-100%] bg-white rounded-lg shadow-gray flex-shrink-0 z-50">
               <svg
                 className="rounded-lg shadow-gray w-[57px] h-[54px] object-cover"
                 version="1.0"
@@ -48,8 +49,8 @@ m160 -36 c10 -12 7 -17 -16 -26 -28 -10 -109 -8 -121 4 -3 4 -3 13 0 22 9 21
                 </g>
               </svg>
             </div>
-            <div className="font-[17px] font-medium flex-shrink-0 flex items-center gap-1">
-              <div>{storeData.storeName}</div>
+            <div className=" pl-[67px] text-[17px] font-medium flex-shrink-0 flex items-center gap-1">
+              <div >{storeData.storeName}</div>
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,26 +68,35 @@ m160 -36 c10 -12 7 -17 -16 -26 -28 -10 -109 -8 -121 4 -3 4 -3 13 0 22 9 21
             </div>
           </div>
           <div className="flex gap-3 items-center">
-            <div className="flex items-center">
-              <button onClick={handleLike} className="focus:outline-none">
+            <div className="h-[2px] flex items-center">
+              <button onClick={handleClick} className="focus:outline-none">
                 {liked ? (
-                  <svg
-                  className="bg-red-500 text-red-700"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="red"
-                  >
-                    <path d="M12.001 4.52853C14.35 2.42 17.98 2.49 20.2426 4.75736C22.5053 7.02472 22.583 10.637 20.4786 12.993L11.9999 21.485L3.52138 12.993C1.41705 10.637 1.49571 7.01901 3.75736 4.75736C6.02157 2.49315 9.64519 2.41687 12.001 4.52853ZM18.827 6.1701C17.3279 4.66794 14.9076 4.60701 13.337 6.01687L12.0019 7.21524L10.6661 6.01781C9.09098 4.60597 6.67506 4.66808 5.17157 6.17157C3.68183 7.66131 3.60704 10.0473 4.97993 11.6232L11.9999 18.6543L19.0201 11.6232C20.3935 10.0467 20.319 7.66525 18.827 6.1701Z"></path>
-                  </svg>
+                 <svg
+                 onClick={handleClick}
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 width="25px"
+                 height="25px"
+                 className=" cursor-pointer transition-colors duration-300 ease-in-out"
+                 fill={liked ? 'red' : 'white'}
+                 stroke="black"
+                 strokeWidth="0"
+               >
+                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+               </svg>
                 ) : (
-                  <svg
-                  
-                  className="bg-red-500 text-red-700"
+                    <svg
+                    onClick={handleClick}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    fill="red"
+                    width="25px"
+                    height="25px"
+                    className="cursor-pointer transition-colors duration-300 ease-in-out"
+                    fill={liked ? 'red' : 'white'}
+                    stroke="black"
+                    strokeWidth="1.5"
                   >
-                    <path d="M12.001 4.52853C14.35 2.42 17.98 2.49 20.2426 4.75736C22.5053 7.02472 22.583 10.637 20.4786 12.993L11.9999 21.485L3.52138 12.993C1.41705 10.637 1.49571 7.01901 3.75736 4.75736C6.02157 2.49315 9.64519 2.41687 12.001 4.52853ZM18.827 6.1701C17.3279 4.66794 14.9076 4.60701 13.337 6.01687L12.0019 7.21524L10.6661 6.01781C9.09098 4.60597 6.67506 4.66808 5.17157 6.17157C3.68183 7.66131 3.60704 10.0473 4.97993 11.6232L11.9999 18.6543L19.0201 11.6232C20.3935 10.0467 20.319 7.66525 18.827 6.1701Z"></path>
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                   </svg>
                 )}
               </button>
@@ -108,14 +118,14 @@ m160 -36 c10 -12 7 -17 -16 -26 -28 -10 -109 -8 -121 4 -3 4 -3 13 0 22 9 21
           </div>
         </div>
 
-        <div className="flex-wrap flex items-center text-black font-[16px]">
-          <div>{storeData.description}</div>
+        <div className="w-full pt-3  flex items-center font-[400] text-black text-[16px]">
+          <div className="tracking-tighter flex-wrap pr-[50px]">{storeData.description}</div>
         </div>
 
-        <div className="flex items-center justify-between text-[#646464] font-[11px]">
+        <div className="pt-2 text-[11px] flex items-center w-full justify-between text-[#646464] ">
           <div className="flex gap-1">
             <div>{storeData.likes} people like this</div>
-            <div>• {storeData.commentsCount} people talking about this</div>
+            <div>• {storeData.commentsCount} talking about this</div>
           </div>
           <div>{storeData.time} ago</div>
         </div>

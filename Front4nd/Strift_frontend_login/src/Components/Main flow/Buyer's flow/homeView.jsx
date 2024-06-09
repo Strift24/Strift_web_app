@@ -3,26 +3,55 @@ import { Link } from "react-router-dom";
 import Post from "./post";
 
 function Home() {
-
+  
   const postsData = [
     {
-      images: ['https://s3-alpha-sig.figma.com/img/2df1/0324/a50e397dbe4d48ac80251b22f6258c71?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WLT4grcfQdNk5Ji2Zvn2CXGNWYWAu61Y~2AK919RlPAWPBVsTsWL~ZlQCK2i1m2UWZ-QL-XRklbZD5ijK8gnrE7PRAYcV3vSCHqR4fJDGK3QlFAYLsoCR1F4Ypi9itmDokAQJfydBWEwEbZH45KLNwndwBJ3wKh0IzToPRxc7YMJO7icLqg74kT4xr9Yz-QvSPNpWSI7jQciIVcyrQXU-~ZxnoaVxIKyhCapi91l3JENbYB3WtbrF16hsFxNQFoS3CPVdgBfPEj0qayA8Ogod75tRKJ1SIyLStjcYB10pIEwUbkXIc9xUWwAUtmLkcEvnUxzlXuZ-CrxzpDjXjGRUg__',
+      images: [
+        "https://s3-alpha-sig.figma.com/img/2df1/0324/a50e397dbe4d48ac80251b22f6258c71?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WLT4grcfQdNk5Ji2Zvn2CXGNWYWAu61Y~2AK919RlPAWPBVsTsWL~ZlQCK2i1m2UWZ-QL-XRklbZD5ijK8gnrE7PRAYcV3vSCHqR4fJDGK3QlFAYLsoCR1F4Ypi9itmDokAQJfydBWEwEbZH45KLNwndwBJ3wKh0IzToPRxc7YMJO7icLqg74kT4xr9Yz-QvSPNpWSI7jQciIVcyrQXU-~ZxnoaVxIKyhCapi91l3JENbYB3WtbrF16hsFxNQFoS3CPVdgBfPEj0qayA8Ogod75tRKJ1SIyLStjcYB10pIEwUbkXIc9xUWwAUtmLkcEvnUxzlXuZ-CrxzpDjXjGRUg__",
 
-       'https://s3-alpha-sig.figma.com/img/8487/262f/eef65ec8e46f164fdd6a104be7aaf372?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jjlc~htqQmmDPss1HADbxXDxqnjh9~DCWdSg4JziN38Z~u4hZcG1jk8Rf1sjqm0etPJ6KyP7zvDvpZdLsQgl0coAIMv2ZRLT0Wu-o6yNwiMSCfQ8sD-jeoZTbQgUDYAqo2AfpdsP1g7dOeqVsDwJKTIvnNZ3Y-9G3BLeCMPID-qVMF2BL5DRh6RAgZqasxMKPfKTJWTO9VTqqHFu2w-Vzk373zUkLvKq2P-xJcnTZbnl64M87yI8gTnYl9JOGZq6lVBEg5L~I0yeTwfWIf7GXr8L61LP3wnOaU~F7zURnw5V80XJulcAGBCU8GSzW0Epy5pJVowPdTPTyEUBltDoIg__',
-       'https://s3-alpha-sig.figma.com/img/687e/65d7/c7c63a04f12339c098f83f2f28523ae8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Wgl6-PUQSWp~NqGusAL6fH-FPRZwfUvvTJDd~SyRQCAMF8lKmQI8bsIjpFkwQW7d9rXrGu21CGs55lZvo64otxvxdFz~OnH-gMH2XWqcnlxAFyczOWNbnqrRf4XErUyl3sdHSTacITmmlRqoYZ1rCRY-ePB~lGQOEsSH~cbKt0j3ZSTa-1aNWw6Abwgs9C3ou8dGSCUmnApzZ8-W29OXTDUShQWi9V7D8mO91MWqqG36TyIx93sYMH5s-E9~dDOf9uUg~j7VZSE6~vDNtncIexJ8tv6RQ2-c~Bhf4QZNJfXfAbcZauLL0WWFJIWChkLWg7kLklZ~NgfxtiEPC~~Vlw__'
-      ], 
-      storeName: 'blurng',
-      description: 'Unconditional tee will be restocking in August. Will lyk the date soon',
-      time: '1 day',
-      likes: '1.1k',
-      comments: '334',
-    }
-  ]
+        "https://s3-alpha-sig.figma.com/img/8487/262f/eef65ec8e46f164fdd6a104be7aaf372?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jjlc~htqQmmDPss1HADbxXDxqnjh9~DCWdSg4JziN38Z~u4hZcG1jk8Rf1sjqm0etPJ6KyP7zvDvpZdLsQgl0coAIMv2ZRLT0Wu-o6yNwiMSCfQ8sD-jeoZTbQgUDYAqo2AfpdsP1g7dOeqVsDwJKTIvnNZ3Y-9G3BLeCMPID-qVMF2BL5DRh6RAgZqasxMKPfKTJWTO9VTqqHFu2w-Vzk373zUkLvKq2P-xJcnTZbnl64M87yI8gTnYl9JOGZq6lVBEg5L~I0yeTwfWIf7GXr8L61LP3wnOaU~F7zURnw5V80XJulcAGBCU8GSzW0Epy5pJVowPdTPTyEUBltDoIg__",
+        "https://s3-alpha-sig.figma.com/img/687e/65d7/c7c63a04f12339c098f83f2f28523ae8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Wgl6-PUQSWp~NqGusAL6fH-FPRZwfUvvTJDd~SyRQCAMF8lKmQI8bsIjpFkwQW7d9rXrGu21CGs55lZvo64otxvxdFz~OnH-gMH2XWqcnlxAFyczOWNbnqrRf4XErUyl3sdHSTacITmmlRqoYZ1rCRY-ePB~lGQOEsSH~cbKt0j3ZSTa-1aNWw6Abwgs9C3ou8dGSCUmnApzZ8-W29OXTDUShQWi9V7D8mO91MWqqG36TyIx93sYMH5s-E9~dDOf9uUg~j7VZSE6~vDNtncIexJ8tv6RQ2-c~Bhf4QZNJfXfAbcZauLL0WWFJIWChkLWg7kLklZ~NgfxtiEPC~~Vlw__",
+      ],
+      storeName: "blurng",
+      description:
+        "Unconditional tee will be restocking in August. Will lyk the date soon",
+      time: "1 day",
+      likes: "1.1k",
+      commentsCount: "334",
+    },
+    {
+      images: [
+        "https://s3-alpha-sig.figma.com/img/2df1/0324/a50e397dbe4d48ac80251b22f6258c71?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WLT4grcfQdNk5Ji2Zvn2CXGNWYWAu61Y~2AK919RlPAWPBVsTsWL~ZlQCK2i1m2UWZ-QL-XRklbZD5ijK8gnrE7PRAYcV3vSCHqR4fJDGK3QlFAYLsoCR1F4Ypi9itmDokAQJfydBWEwEbZH45KLNwndwBJ3wKh0IzToPRxc7YMJO7icLqg74kT4xr9Yz-QvSPNpWSI7jQciIVcyrQXU-~ZxnoaVxIKyhCapi91l3JENbYB3WtbrF16hsFxNQFoS3CPVdgBfPEj0qayA8Ogod75tRKJ1SIyLStjcYB10pIEwUbkXIc9xUWwAUtmLkcEvnUxzlXuZ-CrxzpDjXjGRUg__",
 
+        "https://s3-alpha-sig.figma.com/img/8487/262f/eef65ec8e46f164fdd6a104be7aaf372?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jjlc~htqQmmDPss1HADbxXDxqnjh9~DCWdSg4JziN38Z~u4hZcG1jk8Rf1sjqm0etPJ6KyP7zvDvpZdLsQgl0coAIMv2ZRLT0Wu-o6yNwiMSCfQ8sD-jeoZTbQgUDYAqo2AfpdsP1g7dOeqVsDwJKTIvnNZ3Y-9G3BLeCMPID-qVMF2BL5DRh6RAgZqasxMKPfKTJWTO9VTqqHFu2w-Vzk373zUkLvKq2P-xJcnTZbnl64M87yI8gTnYl9JOGZq6lVBEg5L~I0yeTwfWIf7GXr8L61LP3wnOaU~F7zURnw5V80XJulcAGBCU8GSzW0Epy5pJVowPdTPTyEUBltDoIg__",
+        "https://s3-alpha-sig.figma.com/img/687e/65d7/c7c63a04f12339c098f83f2f28523ae8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Wgl6-PUQSWp~NqGusAL6fH-FPRZwfUvvTJDd~SyRQCAMF8lKmQI8bsIjpFkwQW7d9rXrGu21CGs55lZvo64otxvxdFz~OnH-gMH2XWqcnlxAFyczOWNbnqrRf4XErUyl3sdHSTacITmmlRqoYZ1rCRY-ePB~lGQOEsSH~cbKt0j3ZSTa-1aNWw6Abwgs9C3ou8dGSCUmnApzZ8-W29OXTDUShQWi9V7D8mO91MWqqG36TyIx93sYMH5s-E9~dDOf9uUg~j7VZSE6~vDNtncIexJ8tv6RQ2-c~Bhf4QZNJfXfAbcZauLL0WWFJIWChkLWg7kLklZ~NgfxtiEPC~~Vlw__",
+      ],
+      storeName: "7.10store",
+      description:
+        "Unconditional tee will be restocking in August. Will lyk the date soon",
+      time: "1 day",
+      likes: "1.1k",
+      commentsCount: "334",
+    },
+    {
+      images: [
+        "https://s3-alpha-sig.figma.com/img/2df1/0324/a50e397dbe4d48ac80251b22f6258c71?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WLT4grcfQdNk5Ji2Zvn2CXGNWYWAu61Y~2AK919RlPAWPBVsTsWL~ZlQCK2i1m2UWZ-QL-XRklbZD5ijK8gnrE7PRAYcV3vSCHqR4fJDGK3QlFAYLsoCR1F4Ypi9itmDokAQJfydBWEwEbZH45KLNwndwBJ3wKh0IzToPRxc7YMJO7icLqg74kT4xr9Yz-QvSPNpWSI7jQciIVcyrQXU-~ZxnoaVxIKyhCapi91l3JENbYB3WtbrF16hsFxNQFoS3CPVdgBfPEj0qayA8Ogod75tRKJ1SIyLStjcYB10pIEwUbkXIc9xUWwAUtmLkcEvnUxzlXuZ-CrxzpDjXjGRUg__",
+
+        "https://s3-alpha-sig.figma.com/img/8487/262f/eef65ec8e46f164fdd6a104be7aaf372?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jjlc~htqQmmDPss1HADbxXDxqnjh9~DCWdSg4JziN38Z~u4hZcG1jk8Rf1sjqm0etPJ6KyP7zvDvpZdLsQgl0coAIMv2ZRLT0Wu-o6yNwiMSCfQ8sD-jeoZTbQgUDYAqo2AfpdsP1g7dOeqVsDwJKTIvnNZ3Y-9G3BLeCMPID-qVMF2BL5DRh6RAgZqasxMKPfKTJWTO9VTqqHFu2w-Vzk373zUkLvKq2P-xJcnTZbnl64M87yI8gTnYl9JOGZq6lVBEg5L~I0yeTwfWIf7GXr8L61LP3wnOaU~F7zURnw5V80XJulcAGBCU8GSzW0Epy5pJVowPdTPTyEUBltDoIg__",
+        "https://s3-alpha-sig.figma.com/img/687e/65d7/c7c63a04f12339c098f83f2f28523ae8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Wgl6-PUQSWp~NqGusAL6fH-FPRZwfUvvTJDd~SyRQCAMF8lKmQI8bsIjpFkwQW7d9rXrGu21CGs55lZvo64otxvxdFz~OnH-gMH2XWqcnlxAFyczOWNbnqrRf4XErUyl3sdHSTacITmmlRqoYZ1rCRY-ePB~lGQOEsSH~cbKt0j3ZSTa-1aNWw6Abwgs9C3ou8dGSCUmnApzZ8-W29OXTDUShQWi9V7D8mO91MWqqG36TyIx93sYMH5s-E9~dDOf9uUg~j7VZSE6~vDNtncIexJ8tv6RQ2-c~Bhf4QZNJfXfAbcZauLL0WWFJIWChkLWg7kLklZ~NgfxtiEPC~~Vlw__",
+      ],
+      storeName: "blurng",
+      description:
+        "Unconditional tee will be restocking in August. Will lyk the date soon",
+      time: "1 day",
+      likes: "1.1k",
+      commentsCount: "334",
+    },
+  ];
 
   return (
-    <main className="bg-white h-screen">
-      <header className="fixed w-full h-[110px] px-3 pt-6 bg-[#313131] flex justify-center items-center gap-2 ">
+    <main className="bg-white h-screen ">
+      <header className="fixed w-full h-[110px] z-[9999999] px-3 pt-6 bg-[#313131] flex justify-center items-center gap-2 ">
         <div className="flex flex-shrink-0 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -112,14 +141,37 @@ function Home() {
           />
         </div>
       </header>
-      <div id="main" className="pt-[110px]">
-
-        {postsData.map( (post,index) => (
-          <Post key={index}
-          storeData={post}
+      <div id="main" className="pt-[110px] pb-9">
+        {postsData.map((post, index) => (
+          <Post key={index} storeData={post} />
+        ))}
+      </div>
+      <div className="flex text-white p-5 items-center justify-center mx-auto bg-[#313131]">
+        Thats all the Posts for now!!
+        <svg
+        className="w-4"
+         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <rect
+            x="1"
+            y="1"
+            width="22"
+            height="22"
+            rx="7.656"
+            style={{ fill: "#f8de40" }}
           />
-        ) )}
-
+          <path
+            d="M23 13.938a14.69 14.69 0 0 1-12.406 6.531c-5.542 0-6.563-1-9.142-2.529A7.66 7.66 0 0 0 8.656 23h6.688A7.656 7.656 0 0 0 23 15.344z"
+            style={{ fill: "#e7c930" }}
+          />
+          <path
+            d="M21.554 5.693c-.063-.289-2.888-.829-4.871-.829a5.584 5.584 0 0 0-3.3.7A3.125 3.125 0 0 1 12 5.919a3.125 3.125 0 0 1-1.381-.352 5.584 5.584 0 0 0-3.3-.7c-1.983 0-4.808.54-4.871.829s-.113 1.217.088 1.381.439.025.477.6.477 2.976 1.808 3.767 3.741.163 4.6-.365A4.3 4.3 0 0 0 11.3 8.568c.138-.892.351-1.507.7-1.507s.565.615.7 1.507a4.3 4.3 0 0 0 1.883 2.51c.854.528 3.264 1.155 4.6.365s1.77-3.189 1.808-3.767.276-.439.477-.6.149-1.095.086-1.383z"
+            style={{ fill: "#101820" }}
+          />
+          <path
+            d="M14 11.457a.32.32 0 0 0-.313.327 2.1 2.1 0 0 1-.5 1.33 1.593 1.593 0 0 1-1.187.433 1.6 1.6 0 0 1-1.187-.43 2.088 2.088 0 0 1-.5-1.334.32.32 0 1 0-.64-.012 2.712 2.712 0 0 0 .679 1.791 2.211 2.211 0 0 0 1.648.625 2.211 2.211 0 0 0 1.647-.625 2.718 2.718 0 0 0 .679-1.791.322.322 0 0 0-.326-.314z"
+            style={{ fill: "#864e20" }}
+          />
+        </svg>
       </div>
     </main>
   );

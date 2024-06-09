@@ -6,23 +6,10 @@ import "react-phone-input-2/lib/style.css";
 import { Link } from "react-router-dom";
 
 import { useEffect } from "react";
-import { auth, provider } from "./config";
-import { signInWithPopup } from "firebase/auth";
-import ProfileName from "./profileName";
 
 function Login1() {
   const [ph, setPh] = useState("");
   const [value, setValue] = useState("");
-  const handleClick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      setValue(data.user.email);
-      localStorage.setItem("email", data.user.email);
-    });
-  };
-
-  useEffect(() => {
-    setValue(localStorage.getItem("email"));
-  }, []);
 
   return (
     <>
@@ -120,7 +107,7 @@ function Login1() {
         <div className="z-[-1] h-[50%] bg-slate-200 rounded-t-xl flex flex-col gap-3 justify-center items-center  bg-opacity-[30%] backdrop-blur-lg">
           <Link to="/phone">
             <button
-              onClick={handleClick}
+              // onClick={handleClick}
               className="flex justify-center items-center text-xl z-50 font-semibold g-signin2 w-[338px] bg-white text-gray-800 rounded-md shadow-md p-2"
             >
               <img
