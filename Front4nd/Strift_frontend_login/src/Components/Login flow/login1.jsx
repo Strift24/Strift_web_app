@@ -6,6 +6,9 @@ import "react-phone-input-2/lib/style.css";
 import { Link } from "react-router-dom";
 
 import { useEffect } from "react";
+import { auth, provider } from "./config";
+import { signInWithPopup } from "firebase/auth";
+import ProfileName from "./profileName";
 
 function Login1() {
   const [ph, setPh] = useState("");
