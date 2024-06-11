@@ -7,18 +7,11 @@ import { Link } from "react-router-dom";
 
 import { useEffect } from "react";
 import ProfileName from "./profileName";
-import { Client } from "appwrite";
-
-const client = new Client();
-
-client
-    .setEndpoint('https://cloud.appwrite.io/v1')    // Your API Endpoint
-    .setProject('6661d28600059451e965')                // Your project ID
-;
+import { account } from "./appwrite";
 
 function Login1() {
   const handleClick = () => {
-   client.createOAuth2Session("google","http://localhost:5173/phone","http://localhost:5173")
+   account.createOAuth2Session("google","http://localhost:5173/phone","http://localhost:5173")
   };
 
   return (
