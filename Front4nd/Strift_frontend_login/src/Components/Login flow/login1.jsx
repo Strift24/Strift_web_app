@@ -68,8 +68,6 @@ function Login1() {
                   <PhoneInput
                     className="cursor-pointer bg-tranparent rounded-lg"
                     country={"in"}
-                    value={ph}
-                    onChange={setPh}
                     containerStyle={{
                       backgroundColor: "transparent",
                       zIndex: 9999,
