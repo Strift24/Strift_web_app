@@ -21,10 +21,6 @@ function Login1() {
    client.createOAuth2Session("google","http://localhost:5173/phone","http://localhost:5173")
   };
 
-  useEffect(() => {
-    setValue(localStorage.getItem("email"));
-  }, []);
-
   return (
     <>
       <div className=" w-full flex justify-center items-center relative ">
