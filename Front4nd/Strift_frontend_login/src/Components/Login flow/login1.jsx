@@ -7,20 +7,22 @@ import { Link } from "react-router-dom";
 
 import { useEffect } from "react";
 import ProfileName from "./profileName";
+import { Client, Account, OAuthProvider } from "appwrite";
+
+const client = new Client()
+    .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+    .setProject('6661d28600059451e965');                 // Your project ID
+
+const account = new Account(client);
+
+
 
 function Login1() {
-  const [ph, setPh] = useState("");
-  const [value, setValue] = useState("");
-  const handleClick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      setValue(data.user.email);
-      localStorage.setItem("email", data.user.email);
-    });
-  };
 
-  useEffect(() => {
-    setValue(localStorage.getItem("email"));
-  }, []);
+  async function handleClick(){
+    const res = await  account.createOAuth2Session("google","http://localhost:5173/phone","http://localhost:5173/")
+    console.log(res)
+  }
 
   return (
     <>
@@ -65,8 +67,6 @@ function Login1() {
                   <PhoneInput
                     className="cursor-pointer bg-tranparent rounded-lg"
                     country={"in"}
-                    value={ph}
-                    onChange={setPh}
                     containerStyle={{
                       backgroundColor: "transparent",
                       zIndex: 9999,
@@ -116,7 +116,7 @@ function Login1() {
         </div>
 
         <div className="z-[-1] h-[50%] bg-slate-200 rounded-t-xl flex flex-col gap-3 justify-center items-center  bg-opacity-[30%] backdrop-blur-lg">
-          <Link to="/phone">
+          {/* <Link to="/phone"> */}
             <button
               onClick={handleClick}
               className="flex justify-center items-center text-xl z-50 font-semibold g-signin2 w-[338px] bg-white text-gray-800 rounded-md shadow-md p-2"
@@ -128,7 +128,7 @@ function Login1() {
               />
               <div className="mr-[12px]">Sign in with Google</div>
             </button>
-          </Link>
+          {/* </Link> */}
 
           <div className="z-[99] text-xs text-center w-[338px] pt-2 text-white font-normal ">
             By continuing, you agree to our{" "}
