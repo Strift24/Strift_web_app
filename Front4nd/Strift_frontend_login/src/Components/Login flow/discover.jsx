@@ -1,8 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Store from "./store";
 
 function Discover() {
+  const navigate = useNavigate();
+
+  //For seaching
+  const [searching, setSearching] = useState(false);
+
+  const handleSearchClick = () => {
+    setSearching(true);
+  };
+
+  const handleSearchClose = () => {
+    setSearching(false);
+  };
+
+  //For selecting stores
+
   const [selectedStores, setSelectedStores] = useState([]);
 
   const storesData = [
@@ -88,28 +103,62 @@ function Discover() {
     });
   };
 
+  async function handleContinue() {
+    try {
+      //Make the backend code
+      setTimeout(() => {
+        const response = selectedStores.length >= 3;
+        if (response) {
+          console.log("success");
+          navigate("/buyer/home");
+        } else {
+          alert("Some error occucred, Try again.");
+        }
+      }, 1000);
+    } catch (error) {
+      alert("Some error occucred.");
+    }
+  }
+
   return (
     <>
       <div className="bg-white h-screen w-full relative">
-        <div className=" w-full flex flex-col items-center justify-center">
-          <div className="Header flex items-center w-full justify-between  p-[27px]">
-            <h1 className="font-medium text-[36px]">discover</h1>
-            <button id="search">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
-                viewBox="0 0 36 36"
-                fill="none"
+        <div className="w-full flex flex-col items-center justify-center">
+          { !searching ? (
+            <div className="fixed z-50 bg-white h-[80px] top-0 Header flex items-center w-full justify-between  p-[27px]">
+              <h1 className="font-medium text-[36px]">discover</h1>
+              <button id="search" onClick={handleSearchClick}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="36"
+                  height="36"
+                  viewBox="0 0 36 36"
+                  fill="none"
+                >
+                  <path
+                    d="M27.6935 32.0257L17.9373 22.3062C17.1675 22.902 16.2675 23.3677 15.2373 23.7031C14.2071 24.038 13.1334 24.2054 12.0162 24.2054C9.13596 24.2054 6.70288 23.2125 4.71697 21.2266C2.73105 19.2407 1.7381 16.8326 1.7381 14.0024C1.7381 11.1472 2.73105 8.72658 4.71697 6.74066C6.70288 4.75416 9.12345 3.7609 11.9787 3.7609C14.8089 3.7609 17.217 4.75416 19.2029 6.74066C21.1894 8.72658 22.1826 11.1472 22.1826 14.0024C22.1826 15.0945 22.0212 16.1373 21.6982 17.1305C21.3753 18.1232 20.8912 19.0416 20.2459 19.8859L30.0396 29.6797L27.6935 32.0257ZM11.9787 20.8914C13.9151 20.8914 15.5474 20.2211 16.8755 18.8805C18.2037 17.5398 18.8677 15.9138 18.8677 14.0024C18.8677 12.0659 18.2037 10.4336 16.8755 9.10553C15.5474 7.77682 13.9151 7.11246 11.9787 7.11246C10.0172 7.11246 8.37866 7.77682 7.06306 9.10553C5.74746 10.4336 5.08966 12.0659 5.08966 14.0024C5.08966 15.9138 5.74746 17.5398 7.06306 18.8805C8.37866 20.2211 10.0172 20.8914 11.9787 20.8914Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <div className="fixed z-50 bg-white h-[80px] top-0 Header flex items-center w-full justify-between p-[27px]">
+              <input
+                type="text"
+                placeholder="Search stores..."
+                className="w-full p-3 border text-base rounded bg-[#2C2C2C] text-white"
+                // Add additional onChange handler as needed for searching functionality
+              />
+              <button
+                onClick={handleSearchClose}
+                className="ml-2 p-3 bg-black text-white rounded"
               >
-                <path
-                  d="M27.6935 32.0257L17.9373 22.3062C17.1675 22.902 16.2675 23.3677 15.2373 23.7031C14.2071 24.038 13.1334 24.2054 12.0162 24.2054C9.13596 24.2054 6.70288 23.2125 4.71697 21.2266C2.73105 19.2407 1.7381 16.8326 1.7381 14.0024C1.7381 11.1472 2.73105 8.72658 4.71697 6.74066C6.70288 4.75416 9.12345 3.7609 11.9787 3.7609C14.8089 3.7609 17.217 4.75416 19.2029 6.74066C21.1894 8.72658 22.1826 11.1472 22.1826 14.0024C22.1826 15.0945 22.0212 16.1373 21.6982 17.1305C21.3753 18.1232 20.8912 19.0416 20.2459 19.8859L30.0396 29.6797L27.6935 32.0257ZM11.9787 20.8914C13.9151 20.8914 15.5474 20.2211 16.8755 18.8805C18.2037 17.5398 18.8677 15.9138 18.8677 14.0024C18.8677 12.0659 18.2037 10.4336 16.8755 9.10553C15.5474 7.77682 13.9151 7.11246 11.9787 7.11246C10.0172 7.11246 8.37866 7.77682 7.06306 9.10553C5.74746 10.4336 5.08966 12.0659 5.08966 14.0024C5.08966 15.9138 5.74746 17.5398 7.06306 18.8805C8.37866 20.2211 10.0172 20.8914 11.9787 20.8914Z"
-                  fill="black"
-                />
-              </svg>
-            </button>
-          </div>
-          <div className="To_choose h-[60px] flex-shrink-0 px-4  text-[20px]">
+                Close
+              </button>
+            </div>
+          )}
+          <div className="pt-[100px] To_choose h-[60px] flex-shrink-0 px-4  text-[20px]">
             Choose five or more accounts below, to help us curate your
             personalised feed.
           </div>
@@ -126,18 +175,21 @@ function Discover() {
           </div>
 
           <div className="fixed bottom-4 w-full flex justify-center">
-            <Link to="/buyer/home">
-              <button
-                className={` px-[36px] py-2 rounded-lg shadow-lg ${
-                  selectedStores.length >= 3
-                    ? "bg-black text-white cursor-pointer"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                } `}
-                disabled={selectedStores.length < 3}
-              >
-                Continue ({selectedStores.length})
-              </button>
-            </Link>
+            <button
+              onClick={handleContinue}
+              className={` px-[36px] py-2 rounded-lg shadow-lg ${
+                selectedStores.length >= 3
+                  ? "bg-black text-white cursor-pointer animate-floatUp"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed hidden"
+              } `}
+              disabled={selectedStores.length < 3}
+              style={{
+                animation:
+                  selectedStores.length >= 3 ? "floatUp 0.5s ease-out" : "none",
+              }}
+            >
+              Continue ({selectedStores.length})
+            </button>
           </div>
         </div>
       </div>

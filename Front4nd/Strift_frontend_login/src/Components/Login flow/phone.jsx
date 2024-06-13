@@ -1,8 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 
 function Phone() {
+  const navigate = useNavigate()
+
+  const [disabled, setDisabled] = useState(true);
+  const [phone, setPhone] = useState('');
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value)
+    setDisabled(e.target.value.length < 10)
+  }
+
+  
+  async function handleContinue() {
+
+    try {
+      setTimeout(() => {
+        //Write the Bakend part for sending the phone number to the database..
+        const response = phone // Take response from here in place of phone
+        if (response) {
+          console.log("Success");
+          navigate('/profileName')
+        } else {
+          alert("Some error occured while pushing your details,\nPlease try again")
+        }
+      },1500)
+    } catch (error) {
+      console.log(error);
+      alert("Some error occured, Please try again.")
+    }
+  }
+
   return (
     <main className="h-screen w-full bg-white">
       <Link to="/">
@@ -58,6 +88,8 @@ function Phone() {
           type="tel"
           name="phone"
           id="phone number"
+          value={phone}
+          onChange={handlePhoneChange}
         />
         <div
           className="text-sm text-neutral-500
@@ -66,13 +98,16 @@ function Phone() {
           We promise, we won’t spam calls.
         </div>
       </div>
-      <Link to="/profileName">
+      {/* <Link to="/profileName"> */}
         <div className="text-center">
-          <button className="bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
+          <button
+          disabled={disabled}
+          onClick={handleContinue}
+          className="bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
             Continue
           </button>
         </div>
-      </Link>
+      {/* </Link> */}
     </main>
   );
 }

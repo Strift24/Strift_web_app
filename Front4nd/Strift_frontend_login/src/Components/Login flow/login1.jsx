@@ -1,8 +1,8 @@
 import React from "react";
-import { useState ,  } from "react";
+import { useState  } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Link , useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 import { Client, Account, OAuthProvider } from "appwrite";
@@ -16,6 +16,12 @@ const account = new Account(client);
 
 
 function Login1() {
+  const [phone , setPhone] = useState('')
+  const [disabledContinue , setDisabledContinue] = useState(true)
+  const handlePhoneChange = (value) => {
+    setPhone(value)
+    setDisabledContinue(value.length < 10)
+  }
 
   const navigate = useNavigate()
 
@@ -34,7 +40,7 @@ function Login1() {
         } else {
           alert("Something went wrong during phone authentication.\nPlease try again later.");
         }
-      }, 2000);
+      }, 1500);
 
     } catch (error) {
       console.log("Error during phone authentication:",error);
@@ -77,7 +83,10 @@ function Login1() {
                   ></label>
 
                   <PhoneInput
-                    className="cursor-pointer bg-tranparent rounded-lg"
+                    placeholder="Enter number"
+                    onChange={handlePhoneChange}
+                    value={phone}
+                    className="z-[99] cursor-pointer bg-tranparent rounded-lg"
                     country={"in"}
                     containerStyle={{
                       backgroundColor: "transparent",
@@ -107,9 +116,9 @@ function Login1() {
                     }}
                   />
 
-                  {/* <Link to="/otp"> */}
                     <button className="z-50 cursor-pointer bg-black w-[338px] h-[56px] flex items-center px-8 gap-8 py-2.5 text-white text-xl font-normal rounded-xl "
                     onClick={handlePhoneContinue}
+                    disabled={disabledContinue}
                     >
                       <svg
                         className="w-[23px]"
@@ -122,7 +131,6 @@ function Login1() {
                       </svg>
                       <div>Continue with Phone</div>
                     </button>
-                  {/* </Link> */}
                 </>
               </div>
             </div>

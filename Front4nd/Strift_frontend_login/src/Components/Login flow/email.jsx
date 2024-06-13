@@ -1,7 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Email() {
+  const navigate = useNavigate()
+  const [submitButtonDisabled , setSubmitButtonDisabled] = useState(true)
+  const [email , setEmail] = useState('')
+
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setSubmitButtonDisabled(event.target.value.length <= 5); // Disable if less than or equal to 5
+  };
+
+  async function handleContinue() {
+
+    try {
+      setTimeout(() => {
+        //Write the Bakend part for sending the emails to the database..
+        const response = email // Take response from here in place of email
+        if (response) {
+          console.log("Success");
+          navigate('/profileName')
+        } else {
+          alert("Some error occured while pushing your details,\nPlease try again")
+        }
+      },1500)
+    } catch (error) {
+      console.log(error);
+      alert("Some error occured, Please try again.")
+    }
+  }
+
   return (
     <main className="h-screen w-full bg-white">
       <Link to="/otp">
@@ -47,15 +76,17 @@ function Email() {
           </svg>
         </button>
       </Link>
-
+ 
       <div className="px-8 py-[90px] w-full flex-col gap-3 flex justify-start items-start text-black">
-        <div className="text-lg font-medium">What’s your email</div>
+        <div className="text-lg font-medium">What’s your email?</div>
         <input
           placeholder="email"
           className="w-full bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="email"
           name="email"
           id=""
+          value={email}
+          onChange={handleEmailChange}
         />
         <div
           className="text-sm text-neutral-500
@@ -64,13 +95,11 @@ function Email() {
           We promise, we won’t spam your inbox.
         </div>
       </div>
-      <Link to="/profileName">
         <div className="text-center">
-          <button className="bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
+          <button onClick={handleContinue} disabled={submitButtonDisabled} className="bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
             Continue
           </button>
         </div>
-      </Link>
     </main>
   );
 }
