@@ -1,12 +1,10 @@
 import React from "react";
-import { useState } from "react";
-import OtpInput from "otp-input-react";
+import { useState ,  } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
-import { useEffect } from "react";
-import ProfileName from "./profileName";
+
 import { Client, Account, OAuthProvider } from "appwrite";
 
 const client = new Client()
@@ -19,9 +17,40 @@ const account = new Account(client);
 
 function Login1() {
 
+  const navigate = useNavigate()
+
+  async function handlePhoneContinue() {
+    try {
+      setTimeout(async () => {
+        // Replace this with your actual backend API call
+        // const success = await authenticatePhone(); // Call your backend API
+  
+        // Simulating the response
+        const success = true; // Change this to the actual response from your backend API
+  
+        if (success) {
+          console.log("Phone authentication successful");
+          navigate('/otp');
+        } else {
+          alert("Something went wrong during phone authentication.\nPlease try again later.");
+        }
+      }, 2000);
+
+    } catch (error) {
+      console.log("Error during phone authentication:",error);
+      alert("Something went wrong during phone authentication.\nPlease try again later.");
+
+    }``
+  }
+
   async function handleClick(){
-    const res = await  account.createOAuth2Session("google","http://localhost:5173/phone","http://localhost:5173/")
-    console.log(res)
+    try {
+      const res = await  account.createOAuth2Session("google","http://localhost:5173/phone","http://localhost:5173/")
+      console.log(res)
+    } catch (error) {
+      console.error("Error during Google sign in:", error);
+      alert("Something went wrong during Google sign in. Please try again later.");
+    }
   }
 
   return (
@@ -41,23 +70,6 @@ function Login1() {
           >
             <div>
               <div className="text-white flex flex-col gap-4 rounded-lg">
-                {/* <>
-                        <label htmlFor="ph" className='font-bold text-l text-white text-center'>
-                            Enter your OTP
-                        </label>
-                        <OtpInput
-                            className="otp-container" 
-                            value={otp}
-                            onChange={setOtp}
-                            OTPLength={6}
-                            otpType = "number"
-                            disabled = {false}
-                            autoFocus
-                        ></OtpInput>
-                        <button className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded "> 
-                            <span>Verify OTP</span>
-                        </button>
-                    </> */}
                 <>
                   <label
                     htmlFor=""
@@ -95,8 +107,10 @@ function Login1() {
                     }}
                   />
 
-                  <Link to="/otp">
-                    <button className="z-50 cursor-pointer bg-black w-[338px] h-[56px] flex items-center px-8 gap-8 py-2.5 text-white text-xl font-normal rounded-xl ">
+                  {/* <Link to="/otp"> */}
+                    <button className="z-50 cursor-pointer bg-black w-[338px] h-[56px] flex items-center px-8 gap-8 py-2.5 text-white text-xl font-normal rounded-xl "
+                    onClick={handlePhoneContinue}
+                    >
                       <svg
                         className="w-[23px]"
                         xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +122,7 @@ function Login1() {
                       </svg>
                       <div>Continue with Phone</div>
                     </button>
-                  </Link>
+                  {/* </Link> */}
                 </>
               </div>
             </div>

@@ -15,14 +15,38 @@ function Home() {
       description: 'Unconditional tee will be restocking in August. Will lyk the date soon',
       time: '1 day',
       likes: '1.1k',
-      comments: '334',
-    }
+      commentsCount: '334',
+    },
+    {
+      images: ['https://s3-alpha-sig.figma.com/img/2df1/0324/a50e397dbe4d48ac80251b22f6258c71?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WLT4grcfQdNk5Ji2Zvn2CXGNWYWAu61Y~2AK919RlPAWPBVsTsWL~ZlQCK2i1m2UWZ-QL-XRklbZD5ijK8gnrE7PRAYcV3vSCHqR4fJDGK3QlFAYLsoCR1F4Ypi9itmDokAQJfydBWEwEbZH45KLNwndwBJ3wKh0IzToPRxc7YMJO7icLqg74kT4xr9Yz-QvSPNpWSI7jQciIVcyrQXU-~ZxnoaVxIKyhCapi91l3JENbYB3WtbrF16hsFxNQFoS3CPVdgBfPEj0qayA8Ogod75tRKJ1SIyLStjcYB10pIEwUbkXIc9xUWwAUtmLkcEvnUxzlXuZ-CrxzpDjXjGRUg__',
+
+       'https://s3-alpha-sig.figma.com/img/8487/262f/eef65ec8e46f164fdd6a104be7aaf372?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jjlc~htqQmmDPss1HADbxXDxqnjh9~DCWdSg4JziN38Z~u4hZcG1jk8Rf1sjqm0etPJ6KyP7zvDvpZdLsQgl0coAIMv2ZRLT0Wu-o6yNwiMSCfQ8sD-jeoZTbQgUDYAqo2AfpdsP1g7dOeqVsDwJKTIvnNZ3Y-9G3BLeCMPID-qVMF2BL5DRh6RAgZqasxMKPfKTJWTO9VTqqHFu2w-Vzk373zUkLvKq2P-xJcnTZbnl64M87yI8gTnYl9JOGZq6lVBEg5L~I0yeTwfWIf7GXr8L61LP3wnOaU~F7zURnw5V80XJulcAGBCU8GSzW0Epy5pJVowPdTPTyEUBltDoIg__',
+       'https://s3-alpha-sig.figma.com/img/687e/65d7/c7c63a04f12339c098f83f2f28523ae8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Wgl6-PUQSWp~NqGusAL6fH-FPRZwfUvvTJDd~SyRQCAMF8lKmQI8bsIjpFkwQW7d9rXrGu21CGs55lZvo64otxvxdFz~OnH-gMH2XWqcnlxAFyczOWNbnqrRf4XErUyl3sdHSTacITmmlRqoYZ1rCRY-ePB~lGQOEsSH~cbKt0j3ZSTa-1aNWw6Abwgs9C3ou8dGSCUmnApzZ8-W29OXTDUShQWi9V7D8mO91MWqqG36TyIx93sYMH5s-E9~dDOf9uUg~j7VZSE6~vDNtncIexJ8tv6RQ2-c~Bhf4QZNJfXfAbcZauLL0WWFJIWChkLWg7kLklZ~NgfxtiEPC~~Vlw__'
+      ], 
+      storeName: 'blurng',
+      description: 'Unconditional tee will be restocking in August. Will lyk the date soon',
+      time: '1 day',
+      likes: '1.1k',
+      commentsCount: '334',
+    },
+    {
+      images: ['https://s3-alpha-sig.figma.com/img/2df1/0324/a50e397dbe4d48ac80251b22f6258c71?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WLT4grcfQdNk5Ji2Zvn2CXGNWYWAu61Y~2AK919RlPAWPBVsTsWL~ZlQCK2i1m2UWZ-QL-XRklbZD5ijK8gnrE7PRAYcV3vSCHqR4fJDGK3QlFAYLsoCR1F4Ypi9itmDokAQJfydBWEwEbZH45KLNwndwBJ3wKh0IzToPRxc7YMJO7icLqg74kT4xr9Yz-QvSPNpWSI7jQciIVcyrQXU-~ZxnoaVxIKyhCapi91l3JENbYB3WtbrF16hsFxNQFoS3CPVdgBfPEj0qayA8Ogod75tRKJ1SIyLStjcYB10pIEwUbkXIc9xUWwAUtmLkcEvnUxzlXuZ-CrxzpDjXjGRUg__',
+
+       'https://s3-alpha-sig.figma.com/img/8487/262f/eef65ec8e46f164fdd6a104be7aaf372?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jjlc~htqQmmDPss1HADbxXDxqnjh9~DCWdSg4JziN38Z~u4hZcG1jk8Rf1sjqm0etPJ6KyP7zvDvpZdLsQgl0coAIMv2ZRLT0Wu-o6yNwiMSCfQ8sD-jeoZTbQgUDYAqo2AfpdsP1g7dOeqVsDwJKTIvnNZ3Y-9G3BLeCMPID-qVMF2BL5DRh6RAgZqasxMKPfKTJWTO9VTqqHFu2w-Vzk373zUkLvKq2P-xJcnTZbnl64M87yI8gTnYl9JOGZq6lVBEg5L~I0yeTwfWIf7GXr8L61LP3wnOaU~F7zURnw5V80XJulcAGBCU8GSzW0Epy5pJVowPdTPTyEUBltDoIg__',
+       'https://s3-alpha-sig.figma.com/img/687e/65d7/c7c63a04f12339c098f83f2f28523ae8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Wgl6-PUQSWp~NqGusAL6fH-FPRZwfUvvTJDd~SyRQCAMF8lKmQI8bsIjpFkwQW7d9rXrGu21CGs55lZvo64otxvxdFz~OnH-gMH2XWqcnlxAFyczOWNbnqrRf4XErUyl3sdHSTacITmmlRqoYZ1rCRY-ePB~lGQOEsSH~cbKt0j3ZSTa-1aNWw6Abwgs9C3ou8dGSCUmnApzZ8-W29OXTDUShQWi9V7D8mO91MWqqG36TyIx93sYMH5s-E9~dDOf9uUg~j7VZSE6~vDNtncIexJ8tv6RQ2-c~Bhf4QZNJfXfAbcZauLL0WWFJIWChkLWg7kLklZ~NgfxtiEPC~~Vlw__'
+      ], 
+      storeName: 'blurng',
+      description: 'Unconditional tee will be restocking in August. Will lyk the date soon',
+      time: '1 day',
+      likes: '1.1k',
+      commentsCount: '334',
+    },
   ]
 
 
   return (
     <main className="bg-white h-screen">
-      <header className="fixed w-full h-[110px] px-3 pt-6 bg-[#313131] flex justify-center items-center gap-2 ">
+      <header className="fixed z-[99999] w-full h-[110px] px-3 pt-6 bg-[#313131] flex justify-center items-center gap-2 ">
         <div className="flex flex-shrink-0 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -121,6 +145,7 @@ function Home() {
         ) )}
 
       </div>
+      <div className="p-4 py-7 bg-slate-700 text-white text-[15px] text-center rounded-t-xl" >That's all the Posts for now... STAY TUNED!!</div>
     </main>
   );
 }

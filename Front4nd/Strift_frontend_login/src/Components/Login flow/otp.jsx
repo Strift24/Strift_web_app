@@ -1,12 +1,107 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import OtpInput from "otp-input-react";
 import "react-phone-input-2/lib/style.css";
 import { useState } from "react";
 
+//IMPORTANT
+// theres some depreciation error with this otp react library so in future this may get effected**********************
+
 function Otp() {
+  const navigate = useNavigate();
   const [otp, setOtp] = useState("");
-  const [showOtp, setShowOtp] = useState(false);
+
+  //For Continue otp
+  const [disabled, setDisabled] = useState(false);
+
+  const handleOtpContinue = () => {
+    if (otp.length != 6) {
+      alert("OTP verification failed. Please enter a valid OTP.");
+      return;
+    }
+
+    try {
+      setDisabled(true);
+
+      // Simulate OTP verification backend part with a delay
+      setTimeout(async () => {
+        // Replace this with your actual backend API call to verify the OTP
+        // const response = await verifyOtpFromBackend(otp); // Call your backend API
+
+        // Simulating the response
+
+        const otpVerificationSuccess = true; // Simulating OTP verification success
+
+        if (otpVerificationSuccess) {
+          console.log("OTP verification successful");
+          navigate("/email");
+        } else {
+          console.log(otp.length);
+          alert("Some error occured, Please Try again.");
+          setDisabled(false);
+        }
+      }, 2000); // Delay of 2 seconds
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Some network error occured, Please try again.");
+    }
+  };
+
+  //For Resend Otp
+  const [resendFlow, setResendFlow] = useState(false);
+  const [timer, setTimer] = useState(20);
+
+  const handleResendOtp = () => {
+    setResendFlow(true);
+    setTimer(20);
+  };
+
+  useEffect(() => {
+    let interval;
+
+    if (resendFlow) {
+      interval = setInterval(() => {
+        setTimer((prevTime) => {
+          if (prevTime <= 1) {
+            clearInterval(interval);
+            setResendFlow(false);
+            return 20;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [resendFlow, timer]);
+
+
+  // For Calling function
+  const [buttonText, setButtonText] = useState("Call me instead");
+  const [isVerifying, setIsVerifying] = useState(false);
+
+  const handleCallClick = async () => {
+    if (isVerifying) return; // Prevent multiple clicks
+
+    setIsVerifying(true);
+    setButtonText('Verifying, Please wait...');
+
+    // Simulate verification process with a delay
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait 2 seconds
+
+    setIsVerifying(false);
+    setButtonText('Verification complete!'); // Assuming successful verification
+
+    // Delay navigation after verification message for 2 seconds
+    setTimeout(() => {
+      navigate('/email'); // Navigate after delay
+    }, 2000);
+    
+  };
 
   return (
     <main className="flex items-center justify-center h-screen">
@@ -70,26 +165,50 @@ function Otp() {
               disabled={false}
               autoFocus
               inputMode="numeric"
-              
             />
           </div>
-          <Link to="/email">
-            <button>
-              <div className="p-2 px-6 opacity-[0.8] mt-2 text-base text-white rounded-xl bg-black">
-                Continue
-              </div>
-            </button>
-          </Link>
+
+          <button disabled={disabled} onClick={handleOtpContinue}>
+            <div className="p-2 px-6 opacity-[0.8] mt-2 text-base text-white rounded-xl bg-black">
+              Continue
+            </div>
+          </button>
+
           <div className="mr-[90px] mt-[20px]">
             <div className="text-[15px]  w-full flex gap-1 items-center justify-center py-2.5 text-white rounded">
-              <div className="flex gap-2 flex-col">
-                <div>
+              <div className="flex gap-2 flex-col items-center">
+                <div className="w-full flex gap-1 flex-shrink-0 items-center">
                   Having issues?
-                  <button className="ml-1">Resend in 19s</button>
+                  {resendFlow ? (
+                    <span> Resend in {timer}s.</span>
+                  ) : (
+                    <button
+                      onClick={handleResendOtp}
+                      className="flex items-center gap-[3px] "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="13"
+                        height="14"
+                        viewBox="0 0 13 14"
+                        fill="none"
+                      >
+                        <path
+                          d="M5.79165 13.8396C4.36317 13.6625 3.17979 13.0396 2.24148 11.971C1.3027 10.9028 0.833313 9.64859 0.833313 8.20831C0.833313 7.42915 0.986785 6.68233 1.29373 5.96785C1.60067 5.25385 2.03748 4.63123 2.60415 4.09998L3.61352 5.10935C3.16491 5.51074 2.82562 5.97706 2.59565 6.50831C2.3652 7.03956 2.24998 7.60623 2.24998 8.20831C2.24998 9.2472 2.58054 10.165 3.24165 10.9616C3.90276 11.7587 4.75276 12.2458 5.79165 12.4229V13.8396ZM7.20831 13.8396V12.4229C8.2354 12.234 9.08233 11.7441 9.74911 10.9531C10.4164 10.1621 10.75 9.2472 10.75 8.20831C10.75 7.02776 10.3368 6.02428 9.5104 5.1979C8.68401 4.37151 7.68054 3.95831 6.49998 3.95831H6.44686L7.22602 4.73748L6.23435 5.72915L3.75519 3.24998L6.23435 0.770813L7.22602 1.76248L6.44686 2.54165H6.49998C8.08192 2.54165 9.42185 3.0906 10.5198 4.18852C11.6177 5.28644 12.1666 6.62637 12.1666 8.20831C12.1666 9.63678 11.6975 10.8853 10.7592 11.954C9.82041 13.0221 8.63679 13.6507 7.20831 13.8396Z"
+                          fill="white"
+                        />
+                      </svg>
+                      <span>Resend?</span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
-            <button className="flex gap-2 items-center   ">
+            <button
+              disabled={isVerifying} // Disable button during verification
+              onClick={handleCallClick}
+              className="flex gap-2 items-center"
+            >
               <svg
                 className="w-[15px]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +220,7 @@ function Otp() {
               </svg>
 
               <span className="text-[14px] text-white font-medium">
-                Call me instead{" "}
+              {buttonText}
               </span>
             </button>
           </div>
