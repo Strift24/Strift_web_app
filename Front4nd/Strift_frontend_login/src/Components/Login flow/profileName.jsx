@@ -17,7 +17,9 @@ function ProfileName() {
         setSecondName(e.target.value)
     }
 
-    async function handleContinue() {
+    async function handleContinue(event) {
+      event.preventDefault();
+
         try {
             setTimeout(() => {
                 const response = firstName.length >= 3
@@ -85,6 +87,7 @@ function ProfileName() {
 
       <div className="px-8 py-[90px] w-full flex-col gap-3 flex justify-start items-start text-black">
         <div className="text-lg font-medium">What should we call you?</div>
+        <form className="w-full" onSubmit={handleContinue}>
         <input
           className="w-full bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="first name"
@@ -96,7 +99,7 @@ function ProfileName() {
           onChange={firstNameChange}
         />
         <input
-          className="w-full bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full mt-4 bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="last name"
           type="text"
           name="name"
@@ -104,12 +107,13 @@ function ProfileName() {
           value={secondName}
           onChange={firstSecondChange}
         />
-      </div>
-        <div className="text-center">
-          <button onClick={handleContinue} disabled={disabled} className="bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
+        <div className="text-center mx-auto pt-12 w-full">
+          <button type="submit" disabled={disabled} className="w-full bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
             Continue
           </button>
         </div>
+        </form>
+      </div>
     </main>
   );
 }

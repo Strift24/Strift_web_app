@@ -1,35 +1,36 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 
 function Phone() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [disabled, setDisabled] = useState(true);
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState("");
 
   const handlePhoneChange = (e) => {
-    setPhone(e.target.value)
-    setDisabled(e.target.value.length < 10)
-  }
+    setPhone(e.target.value);
+    setDisabled(e.target.value.length < 10);
+  };
 
-  
-  async function handleContinue() {
-
+  async function handleContinue(event) {
+    event.preventDefault();
     try {
       setTimeout(() => {
         //Write the Bakend part for sending the phone number to the database..
-        const response = phone // Take response from here in place of phone
+        const response = phone; // Take response from here in place of phone
         if (response) {
           console.log("Success");
-          navigate('/profileName')
+          navigate("/profileName");
         } else {
-          alert("Some error occured while pushing your details,\nPlease try again")
+          alert(
+            "Some error occured while pushing your details,\nPlease try again"
+          );
         }
-      },1500)
+      }, 1500);
     } catch (error) {
       console.log(error);
-      alert("Some error occured, Please try again.")
+      alert("Some error occured, Please try again.");
     }
   }
 
@@ -79,35 +80,36 @@ function Phone() {
         </button>
       </Link>
 
-      <div className="px-8 py-[90px] w-full flex-col gap-3 flex justify-start items-start text-black"> 
-        <div className="text-lg font-medium">Enter your Phone Number:</div> 
-        <InputMask 
-          mask="99999-99999" 
-          placeholder="98765-43210" 
-          className="w-full bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          type="tel"
-          name="phone"
-          id="phone number"
-          value={phone}
-          onChange={handlePhoneChange}
-        />
-        <div
-          className="text-sm text-neutral-500
+      <div className="px-8 py-[90px] w-full flex-col gap-3 flex justify-start items-start text-black">
+        <div className="text-lg font-medium">Enter your Phone Number:</div>
+        <form className="w-full" onSubmit={handleContinue}>
+          <InputMask
+            mask="99999-99999"
+            placeholder="98765-43210"
+            className="w-full bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="tel"
+            name="phone"
+            id="phone number"
+            value={phone}
+            onChange={handlePhoneChange}
+          />
+          <div
+            className="text-sm text-neutral-500
 "
-        >
-          We promise, we won’t spam calls.
-        </div>
+          >
+            We promise, we won’t spam calls.
+          </div>
+          <div className="text-center mx-auto pt-10 w-full">
+            <button
+              disabled={disabled}
+              type="submit"
+              className="bg-black px-[36px] w-full py-2 rounded-lg shadow-lg text-white"
+            >
+              Continue
+            </button>
+          </div>
+        </form>
       </div>
-      {/* <Link to="/profileName"> */}
-        <div className="text-center">
-          <button
-          disabled={disabled}
-          onClick={handleContinue}
-          className="bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
-            Continue
-          </button>
-        </div>
-      {/* </Link> */}
     </main>
   );
 }

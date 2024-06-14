@@ -2,32 +2,33 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Email() {
-  const navigate = useNavigate()
-  const [submitButtonDisabled , setSubmitButtonDisabled] = useState(true)
-  const [email , setEmail] = useState('')
-
+  const navigate = useNavigate();
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
+  const [email, setEmail] = useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
     setSubmitButtonDisabled(event.target.value.length <= 5); // Disable if less than or equal to 5
   };
 
-  async function handleContinue() {
-
+  async function handleContinue(event) {
+    event.preventDefault();
     try {
       setTimeout(() => {
         //Write the Bakend part for sending the emails to the database..
-        const response = email // Take response from here in place of email
+        const response = email; // Take response from here in place of email
         if (response) {
           console.log("Success");
-          navigate('/profileName')
+          navigate("/profileName");
         } else {
-          alert("Some error occured while pushing your details,\nPlease try again")
+          alert(
+            "Some error occured while pushing your details,\nPlease try again"
+          );
         }
-      },1500)
+      }, 1500);
     } catch (error) {
       console.log(error);
-      alert("Some error occured, Please try again.")
+      alert("Some error occured, Please try again.");
     }
   }
 
@@ -76,30 +77,36 @@ function Email() {
           </svg>
         </button>
       </Link>
- 
+
       <div className="px-8 py-[90px] w-full flex-col gap-3 flex justify-start items-start text-black">
         <div className="text-lg font-medium">What’s your email?</div>
-        <input
-          placeholder="email"
-          className="w-full bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          type="email"
-          name="email"
-          id=""
-          value={email}
-          onChange={handleEmailChange}
-        />
-        <div
-          className="text-sm text-neutral-500
+        <form className="w-full" onSubmit={handleContinue}>
+          <input
+            placeholder="email"
+            className="w-full bg-[#E8E8E8] rounded-lg p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="email"
+            name="email"
+            id=""
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <div
+            className="text-sm py-4 text-neutral-500
 "
-        >
-          We promise, we won’t spam your inbox.
-        </div>
+          >
+            We promise, we won’t spam your inbox.
+          </div>
+          <div className="text-center mx-auto pt-10 w-full">
+            <button
+              type="submit"
+              disabled={submitButtonDisabled}
+              className="bg-black px-[36px] w-full py-2 rounded-lg shadow-lg text-white"
+            >
+              Continue
+            </button>
+          </div>
+        </form>
       </div>
-        <div className="text-center">
-          <button onClick={handleContinue} disabled={submitButtonDisabled} className="bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
-            Continue
-          </button>
-        </div>
     </main>
   );
 }
