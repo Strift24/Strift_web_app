@@ -57,6 +57,7 @@ function Login1() {
         "http://localhost:5173/phone",
         "http://localhost:5173/"
       );
+      // if else
       console.log(res);
     } catch (error) {
       console.error("Error during Google sign in:", error);

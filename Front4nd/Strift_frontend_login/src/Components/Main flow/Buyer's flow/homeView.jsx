@@ -145,7 +145,8 @@ function Home() {
         ) )}
 
       </div>
-      <div className="p-4 py-7 bg-slate-700 text-white text-[15px] text-center rounded-t-xl" >That's all the Posts for now... STAY TUNED!!</div>
+      <div className="py-5 text-center bg-slate-500 text-orange-100 rounded-t-2xl">That's all the Posts for now... STAY TUNED!!</div>
+      
     </main>
   );
 }

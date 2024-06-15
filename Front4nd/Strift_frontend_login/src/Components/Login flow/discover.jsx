@@ -145,7 +145,7 @@ function Discover() {
           ) : (
             <div className="fixed z-50 bg-white h-[80px] top-0 Header flex items-center w-full justify-between p-[27px]">
               <input
-                type="text"
+                type="text" 
                 placeholder="Search stores..."
                 className="w-full p-3 border text-base rounded bg-[#2C2C2C] text-white"
                 // Add additional onChange handler as needed for searching functionality
@@ -158,7 +158,7 @@ function Discover() {
               </button>
             </div>
           )}
-          <div className="pt-[100px] To_choose h-[60px] flex-shrink-0 px-4  text-[20px]">
+          <div className="pt-[100px] pb-3 To_choose  flex-shrink-0 px-4  text-[20px]">
             Choose five or more accounts below, to help us curate your
             personalised feed.
           </div>
@@ -174,10 +174,10 @@ function Discover() {
             ))}
           </div>
 
-          <div className="fixed bottom-4 w-full flex justify-center">
+          <div className="fixed bottom-[110px] w-full flex justify-center">
             <button
               onClick={handleContinue}
-              className={` px-[36px] py-2 rounded-lg shadow-lg ${
+              className={` px-[36px] py-2 rounded-3xl shadow-lg ${
                 selectedStores.length >= 3
                   ? "bg-black text-white cursor-pointer animate-floatUp"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed hidden"
@@ -185,7 +185,7 @@ function Discover() {
               disabled={selectedStores.length < 3}
               style={{
                 animation:
-                  selectedStores.length >= 3 ? "floatUp 0.5s ease-out" : "none",
+                  selectedStores.length >= 3 ? "floatUp 0.6s ease-in" : "none",
               }}
             >
               Continue ({selectedStores.length})
