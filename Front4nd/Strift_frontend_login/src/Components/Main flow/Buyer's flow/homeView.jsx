@@ -145,7 +145,7 @@ function Home() {
         ) )}
 
       </div>
-      <div className="py-5 text-center bg-slate-500 text-orange-100 rounded-t-2xl">That's all the Posts for now... STAY TUNED!!</div>
+      <div className="py-5 text-center bg-slate-500 text-black rounded-t-2xl">Made By Love From Delhi... STAY TUNED!!</div>
       
     </main>
   );

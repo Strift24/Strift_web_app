@@ -174,7 +174,7 @@ function Discover() {
             ))}
           </div>
 
-          <div className="fixed bottom-[110px] w-full flex justify-center">
+          <div className="fixed bottom-[10px] w-full flex justify-center">
             <button
               onClick={handleContinue}
               className={` px-[36px] py-2 rounded-3xl shadow-lg ${
