@@ -1,7 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
 
 import { Client, Account, OAuthProvider } from "appwrite";
@@ -13,15 +11,23 @@ const client = new Client()
 const account = new Account(client);
 
 function Login1() {
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+91");
   const [disabledContinue, setDisabledContinue] = useState(true);
-  const handlePhoneChange = (value) => {
-    setPhone(value);
+  const navigate = useNavigate();
+  
+  
+  const handlePhoneChange = (event) => {
+    const value = event.target.value;
+    // Allow only digits, backspaces, and the '+' sign
+    const isValidInput = /^\+?[0-9\b]{0,12}$/.test(value);
+    if (isValidInput || value === "") {
+      setPhone(value);
+      setDisabledContinue(value.length < 10);
+    }    
     setDisabledContinue(value.length < 10);
   };
-
-  const navigate = useNavigate();
-
+  
+  
   async function handlePhoneContinue(event) {
     event.preventDefault();
     try {
@@ -76,51 +82,26 @@ function Login1() {
         </h1>
       </div>
 
-      <div className="h-[45%]  absolute bottom-[0px] w-full">
+      <div className="h-[50%]  absolute bottom-[0px] w-full">
         <div className="flex justify-center items-center gap-4 flex-col h-[50%] bg-black bg-opacity-[40%] backdrop-blur-lg rounded-t-3xl ">
           <section
             id="LoginPage"
             className=" h-screen flex items-center justify-center z-50"
           >
             <div>
-              <div className="text-white flex flex-col gap-4 rounded-lg">
-                <form  onSubmit={handlePhoneContinue}>
-                  <PhoneInput
-                    placeholder="Enter number"
-                    onChange={handlePhoneChange}
-                    value={phone}
-                    className="z-[99] cursor-pointer bg-tranparent rounded-lg"
-                    country={"in"}
-                    containerStyle={{
-                      backgroundColor: "transparent",
-                      zIndex: 9999,
-                    }}
-                    inputStyle={{
-                      backgroundColor: "white", // or 'black' for black background
-                      color: "black", // text color
-                      fontWeight: 100,
-                      borderColor: "transparent",
-                      boxShadow: "none",
-                      paddingLeft: "48px",
-                      // borderRadius: "",
-                    }}
-                    searchStyle={{ backgroundColor: "black", zIndex: 9999 }}
-                    dropdownStyle={{
-                      borderTopLeftRadius: "10px", // Adjust the top-left border radius
-                      borderTopRightRadius: "10px",
-                      color: "black",
-                      backgroundColor: "white",
-                      top: "-180px", // Adjust this value to position the dropdown above the input field
-                      maxHeight: "150px", // Limit dropdown height if needed
-                      overflowY: "auto", // Enable scrolling if dropdown height exceeds maxHeight
-                    }}
-                    buttonStyle={{
-                      backgroundColor: "white",
-                    }}
+                <form className="flex flex-col gap-4 items-center justify-center"  onSubmit={handlePhoneContinue}>
+                  <label className="underline text-white" htmlFor="phoneNumber"> Enter Your Phone Number</label>
+                  <input 
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="tel"
+                  placeholder="+918764321012"
+                  className= " cursor-pointer h-[56px] bg-[rgb(0,0,0,0.5)] rounded-lg text-white text-xl w-full py-2.5 px-[28px]" 
+                  value={phone}
+                  onChange={handlePhoneChange}
                   />
-
                   <button
-                    className="z-50 mt-5 cursor-pointer bg-black w-[338px] h-[56px] flex items-center px-8 gap-8 py-2.5 text-white text-xl font-normal rounded-xl "
+                    className="z-50 cursor-pointer bg-black w-[338px] h-[56px] flex items-center px-8 gap-8 py-2.5 text-white text-xl font-normal rounded-xl "
                     type="submit"
                     disabled={disabledContinue}
                   >
@@ -136,7 +117,6 @@ function Login1() {
                     <div>Continue with Phone</div>
                   </button>
                 </form>
-              </div>
             </div>
           </section>
         </div>

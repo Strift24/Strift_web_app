@@ -94,20 +94,16 @@ function Phone() {
             onChange={handlePhoneChange}
           />
           <div
-            className="text-sm text-neutral-500
+            className="text-sm pt-3 text-neutral-500
 "
           >
             We promise, we won’t spam calls.
           </div>
-          <div className="text-center mx-auto pt-10 w-full">
-            <button
-              disabled={disabled}
-              type="submit"
-              className="bg-black px-[36px] w-full py-2 rounded-lg shadow-lg text-white"
-            >
-              Continue
-            </button>
-          </div>
+          <div className="w-full absolute pb-2 bottom-6 px-4 left-1/2 transform -translate-x-1/2 translate-y-1/2  text-center">
+          <button type="submit" disabled={disabled} className="w-full bg-black  py-2 rounded-lg shadow-lg text-white">
+            Continue
+          </button>
+        </div>
         </form>
       </div>
     </main>

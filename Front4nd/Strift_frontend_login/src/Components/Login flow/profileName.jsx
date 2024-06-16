@@ -25,7 +25,7 @@ function ProfileName() {
                 const response = firstName.length >= 3
             if (response) {
                 console.log("success");
-                navigate('/discover')
+                navigate('/decidingUser')
             } else {
                 if (firstName.length < 3) {
                     alert('Please enter a Valid Name.')
@@ -85,7 +85,7 @@ function ProfileName() {
         </button>
       </Link>
 
-      <div className="px-8 py-[90px] w-full flex-col gap-3 flex justify-start items-start text-black">
+      <div className=" px-8 py-[90px] w-full flex-col gap-3 flex justify-start items-start text-black">
         <div className="text-lg font-medium">What should we call you?</div>
         <form className="w-full" onSubmit={handleContinue}>
         <input
@@ -107,8 +107,8 @@ function ProfileName() {
           value={secondName}
           onChange={firstSecondChange}
         />
-        <div className="text-center mx-auto pt-12 w-full">
-          <button type="submit" disabled={disabled} className="w-full bg-black px-[36px] py-2 rounded-lg shadow-lg text-white">
+        <div className="w-full absolute pb-2 bottom-6 px-4 left-1/2 transform -translate-x-1/2 translate-y-1/2  text-center">
+          <button type="submit" disabled={disabled} className="w-full bg-black  py-2 rounded-lg shadow-lg text-white">
             Continue
           </button>
         </div>
