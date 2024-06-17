@@ -9,18 +9,32 @@ function AddProduct() {
   const [inventory, setInventory] = useState("");
   const [isOutOfStock, setIsOutOfStock] = useState(false);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const [disabled, setDisabled] = useState(false);
+  
 
   const handleSubmit = (event) => {
+    // setDisabled(images ? false : true);
     event.preventDefault();
-    // Handle form submission logic here
-    console.log({
-      productName,
-      productDescription,
-      price,
-      discount,
-      inventory,
-      isOutOfStock,
-    });
+    if(price < 0 && discountedPrice < 0){
+      return alert("Please enter a valid price !!");
+    } 
+    if (images.length < 1) {
+      return alert("Please add a picture !!")
+    }
+        // Handle form submission logic here
+    console.log(
+      {
+        productName,
+        productDescription,
+        price,
+        discount,
+        inventory,
+        isOutOfStock,
+        selectedSizes,
+        images,
+      }
+    );
+
   };
 
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
@@ -39,44 +53,33 @@ function AddProduct() {
     const selectedFiles = Array.from(event.target.files);
     const imageUrls = selectedFiles.map((file) => URL.createObjectURL(file));
     setImages((prevImages) => [...prevImages, ...imageUrls]);
+
   };
 
   const handleRemoveImage = (index) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
-  function WelcomeModal({ onClose }) {
-    return (
-      <div className="fixed inset-0 gap-5
-       flex flex-col items-center justify-center bg-black bg-opacity-50">
-        <div className="text-white text-xl  font-semibold" >Welcome To [ strift ]</div>
-        <div className="bg-white p-6 rounded-lg flex flex-col items-center justify-center">
-          <p className="text-center text-xl mb-4">Now let's add some products 😎 </p>
-          <button
-            onClick={onClose}
-            className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-          >
-            Ready!!
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  const [showWelcomeModal, setShowWelcomeModal] = useState(true);
-
-  const handleCloseModal = () => {
-    setShowWelcomeModal(false);
+  const handlePriceChange = (e) => {
+    const value = parseInt(e.target.value, 10);
+    setPrice(isNaN(value) ? "" : value);
   };
 
+  const handleDiscountChange = (e) => {
+    const value = parseInt(e.target.value, 10);
+    setDiscount(isNaN(value) ? "" : value);
+  };
+
+  const discountedPrice = (price - (price * discount / 100)).toFixed(2);
+
+
+  
+
+  
   return (
     <div className="bg-black h-screen">
-      {showWelcomeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50">
-          <WelcomeModal onClose={handleCloseModal} />
-        </div>
-      )}
-      <div className={showWelcomeModal ? 'hidden' : 'block'}>
+      
+      <div >
         <div className="bg-white h-screen">
           <div className="relative h-[550px] bg-[#D9D9D9]">
             <div className="flex justify-between items-center h-[17%] p-6">
@@ -131,6 +134,7 @@ function AddProduct() {
               <input
                 type="file"
                 id="imageUpload"
+                required
                 multiple
                 accept="image/*"
                 onChange={handleImageUpload}
@@ -191,17 +195,18 @@ function AddProduct() {
               {/*  Here take the logo image from the backend */}
             </div>
           </div>
-          <div className="p-4 flex flex-col justify-center">
-            <form onSubmit={handleSubmit} className="w-full max-w-lg p-4">
-              <h2 className="text-gray-700 text-xl font-bold mb-4">
+          <div className="flex flex-col justify-center relative">
+            <form onSubmit={handleSubmit} className="w-full max-w-lg">
+              <h2 className="text-gray-700 p-6 text-xl font-bold mb-4">
                 Enter product information
               </h2>
 
-              <div className="mb-4">
+              <div className="mb-4 px-6">
                 <input
                   id="productName"
                   name="productName"
                   type="text"
+                  required
                   placeholder="Product name"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   value={productName}
@@ -209,7 +214,7 @@ function AddProduct() {
                 />
               </div>
 
-              <div className="flex flex-col justify-center gap-2 mb-4 ">
+              <div className="flex flex-col justify-center gap-2 mb-4  px-6">
                 <div className="pl-2 text-gray-600 font-medium">
                   Select sizes available
                 </div>
@@ -230,9 +235,10 @@ function AddProduct() {
                 </div>
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 px-6">
                 <textarea
                   id="productDescription"
+                  required
                   name="productDescription"
                   placeholder="Product description"
                   className="shadow appearance-none border rounded w-full py-2 pb-6 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -241,32 +247,35 @@ function AddProduct() {
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 px-6">
                 <input
                   id="price"
                   name="price"
-                  type="text"
+                  type="number"
                   placeholder="Price"
+                  required
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={handlePriceChange}
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 px-6">
                 <input
+                min="0"
                   id="discount"
                   name="discount"
-                  type="text"
+                  type="number"
                   placeholder="Discount (optional)"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   value={discount}
-                  onChange={(e) => setDiscount(e.target.value)}
+                  onChange={handleDiscountChange}
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 px-6">
                 <input
+                  required
                   id="inventory"
                   name="inventory"
                   type="text"
@@ -277,11 +286,12 @@ function AddProduct() {
                 />
               </div>
 
-              <div className="mb-4 flex justify-between items-center">
+              <div className="mb-[120px] px-6 flex justify-between items-center">
                 <div className="text-base text-[#2B2B2BB0]">
                   Mark as sold if out of stock
                 </div>
                 <input
+                  
                   id="isOutOfStock"
                   name="isOutOfStock"
                   type="checkbox"
@@ -291,12 +301,25 @@ function AddProduct() {
                 />
               </div>
 
-              <div className="flex items-center justify-center mt-6 mb-6">
-                <button
-                  type="submit"
-                  className="bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                  Submit
+              <div className="w-full rounded-t-xl px-8 p-3 bg-[rgba(255, 255, 255, 0.40)] backdrop-blur-[32px] h-[95px]  bottom-0 flex items-center fixed justify-between ">
+                <div className="pt-2 text-[23px] font-normal">
+                    <div className="">₹ {discount >= 0 && discountedPrice}</div>
+                  <div className="pl-0 text-[14px] line-through">₹ {price}</div>
+                </div>
+                <button disabled={disabled} className="flex bg-black w-32 h-12 gap-4 shadow-lg px-4 items-center p-2 rounded-lg">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="27"
+                    height="27"
+                    viewBox="0 0 27 27"
+                    fill="none"
+                  >
+                    <path
+                      d="M6.2438 24.8625C5.73755 24.8625 5.29224 24.675 4.90786 24.3C4.52349 23.925 4.3313 23.475 4.3313 22.95V8.52187C4.3313 7.99687 4.52349 7.54687 4.90786 7.17187C5.29224 6.79687 5.73755 6.60937 6.2438 6.60937H9.1688V6.32812C9.1688 5.12812 9.59067 4.11093 10.4344 3.27656C11.2782 2.44218 12.3 2.02499 13.5 2.02499C14.7 2.02499 15.7219 2.44218 16.5657 3.27656C17.4094 4.11093 17.8313 5.12812 17.8313 6.32812V6.60937H20.7563C21.2813 6.60937 21.7313 6.79687 22.1063 7.17187C22.4813 7.54687 22.6688 7.99687 22.6688 8.52187V22.95C22.6688 23.475 22.4813 23.925 22.1063 24.3C21.7313 24.675 21.2813 24.8625 20.7563 24.8625H6.2438ZM10.125 11.8969C10.4063 11.8969 10.636 11.8078 10.8141 11.6297C10.9922 11.4516 11.0813 11.2219 11.0813 10.9406V8.52187H9.1688V10.9406C9.1688 11.2219 9.25786 11.4516 9.43599 11.6297C9.61411 11.8078 9.8438 11.8969 10.125 11.8969ZM11.0813 6.60937H15.9188V6.32812C15.9 5.65312 15.661 5.08593 15.2016 4.62656C14.7422 4.16718 14.175 3.93749 13.5 3.93749C12.825 3.93749 12.2579 4.16718 11.7985 4.62656C11.3391 5.08593 11.1 5.65312 11.0813 6.32812V6.60937ZM16.875 11.8969C17.1563 11.8969 17.386 11.8078 17.5641 11.6297C17.7422 11.4516 17.8313 11.2219 17.8313 10.9406V8.52187H15.9188V10.9406C15.9188 11.2219 16.0079 11.4516 16.186 11.6297C16.3641 11.8078 16.5938 11.8969 16.875 11.8969Z"
+                      fill="white"
+                    />
+                  </svg>
+                  <h2 className="text-white text-lg font-medium">Save</h2>
                 </button>
               </div>
             </form>

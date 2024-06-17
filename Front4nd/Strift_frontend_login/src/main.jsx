@@ -24,6 +24,9 @@ import Post from "./Components/Main flow/Buyer's flow/post.jsx";
 import DecidingUser from "./Components/Login flow/decidingUser.jsx";
 import ShopOnBoarding from "./Components/Main flow/Seller's flow/Onboarding.jsx";
 import AddProduct from "./Components/Main flow/Seller's flow/addProduct.jsx";
+import SellerDashboard from "./Components/Main flow/Seller's flow/sellerDashboard.jsx";
+import SellerOrders from "./Components/Main flow/Seller's flow/sellerOrders.jsx";
+import WelcomeOnboard from "./Components/Main flow/Seller's flow/welcomeOnboard.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,6 +54,9 @@ const router = createBrowserRouter(
       <Route path="label">
         <Route path="onBoarding" element={<ShopOnBoarding />} />
         <Route path="addProduct" element={<AddProduct />} />
+        <Route path="sellerDashboard" element={<SellerDashboard />} />
+        <Route path="sellerOrders" element={<SellerOrders />} />
+        <Route path="welcomeOnboard" element={<WelcomeOnboard />} />
       </Route>
     </Route>
   )
