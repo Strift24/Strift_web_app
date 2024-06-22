@@ -90,7 +90,6 @@ function Login1() {
           >
             <div>
                 <form className="flex flex-col gap-4 items-center justify-center"  onSubmit={handlePhoneContinue}>
-                  <label className="underline text-white" htmlFor="phoneNumber"> Enter Your Phone Number</label>
                   <input 
                   id="phoneNumber"
                   name="phoneNumber"

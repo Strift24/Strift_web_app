@@ -3,7 +3,7 @@ import {useNavigate } from "react-router-dom";
 import OtpInput from "otp-input-react";
 import "react-phone-input-2/lib/style.css";
 import { useState } from "react";
-
+ 
 //IMPORTANT
 // theres some depreciation error with this otp react library so in future this may get effected**********************
 
@@ -168,11 +168,7 @@ function Otp() {
             />
           </div>
 
-          <button disabled={disabled} onClick={handleOtpContinue}>
-            <div className="p-2 px-6 opacity-[0.8] mt-2 text-base text-white rounded-xl bg-black">
-              Continue
-            </div>
-          </button>
+          
 
           <div className="mr-[90px] mt-[20px]">
             <div className="text-[15px]  w-full flex gap-1 items-center justify-center py-2.5 text-white rounded">
@@ -224,6 +220,11 @@ function Otp() {
               </span>
             </button>
           </div>
+          <div className="w-full absolute pb-2 bottom-6 px-4 left-1/2 transform -translate-x-1/2 translate-y-1/2  text-center">
+          <button type="submit" disabled={disabled} onClick={handleOtpContinue} className="w-full bg-black  py-2 rounded-lg shadow-lg text-white">
+            Continue
+          </button>
+        </div>
         </div>
       </div>
     </main>
