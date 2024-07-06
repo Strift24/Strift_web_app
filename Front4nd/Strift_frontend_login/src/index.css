@@ -35,6 +35,12 @@
 }
 
 
+.transition-opacity {
+    transition: opacity 500ms ease-in-out;
+  }
+
+
+
 .PhoneInputCountryIcon {
     background-color: transparent !important;
     /* Change the background color of the flag icon */

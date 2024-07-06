@@ -5,7 +5,7 @@ function Store({ store, isSelected, onSelect }) {
     <main className="bg-white">
       <div
         id="main box"
-        className="  w-full  p-4 gap-4 flex flex-col items-center justify-center"
+        className="  w-full  py-4 gap-4 flex flex-col items-center justify-center"
       >
         <div className="flex justify-between items-center w-full">
           <div className="flex gap-4 items-center">
