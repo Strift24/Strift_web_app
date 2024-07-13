@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import plus from "../../../assets/SellerAssets/plus.png";
 import c725b1eaf19e0f9d408d4fd1e3e3b5bd from "../../../assets/discover page/c725b1eaf19e0f9d408d4fd1e3e3b5bd.png";
+import FormPropsDateTimePickers from "../../resusableComponents/FormPropsDateTimePickers";
+import dayjs from "dayjs";
 
-function AddCategory() {
+
+function AddCollection() {
   const navigate = useNavigate();
-  const [categoryName, SetCategoryName] = useState("");
+  const [collectionName, setCollectionName] = useState("");
+  const [collectionDescription, setCollectionDescription] = useState("");
+  const [collectionTiming, setCollectionTiming] = useState(dayjs());
+  const [coverImage, setCoverImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [showError, setShowError] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
@@ -26,10 +32,14 @@ function AddCategory() {
   );
   const [selectedProducts, setSelectedProducts] = useState([]);
 
+  const handleDateChange = (date) => {
+    setCollectionTiming(date);
+  };
+
   useEffect(() => {}, [dummyProducts]); //  Replace the dummy products with the actual added products
 
   const handleContinue = () => {
-    if (!categoryName.trim()) {
+    if (!collectionName.trim()) {
       setErrorMessage("Please fill in all details");
       setShowError(true);
       setIsShaking(true);
@@ -42,10 +52,35 @@ function AddCategory() {
     } else {
       // Proceed with adding the category
       // Your logic to add the category goes here
-
-      console.log("Category added successfully");
+      console.log(collectionTiming ,  selectedProducts);
+      console.log("Collection added successfully");
     }
   };
+
+  const handleCoverImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setCoverImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setCoverImage(null);
+    }
+    resetFileInput(event);
+    // Reset the file input value
+  };
+
+  const resetFileInput = (event) => {
+    event.target.value = null;
+  };
+  
+  const removeCoverImage = () => {
+    setCoverImage(null);
+    // Optionally, make an API call to delete the image from the server
+  };
+  
 
   const toggleProductSelection = (productId) => {
     setSelectedProducts((prevSelected) => {
@@ -61,8 +96,9 @@ function AddCategory() {
     <div className="bg-white h-screen ">
       <div className="relative">
         <div className="z-[99999] items-center bg-white  h-[70px] flex fixed w-full top-0 left-0 p-6">
-          <Link to="/label/onBoarding">
-            <button className="">
+            <button
+            onClick={() => navigate(-1)}
+            className="">
               <svg
                 className="font-bold"
                 width="29"
@@ -104,24 +140,100 @@ function AddCategory() {
                 </g>
               </svg>
             </button>
-          </Link>
-          <div className="text-[30px] mx-auto font-medium">Create category</div>
+          <div className="text-[30px] mx-auto font-medium">
+            Create collection
+          </div>
         </div>
       </div>
       <div className="flex flex-col w-full relative mt-[83px] justify-center items-center px-6">
         <div className="pb-4 w-full">
           <input
-            id="categoryName"
-            name="categoryName"
+            id="collectionName"
+            name="collectionName"
             type="text"
             required
-            placeholder="Category name"
+            placeholder="Collection name"
             className="shadow appearance-none border rounded-lg h-[56px] w-full py-2 px-3 text-gray-900 leading-tight focus:outline-yellow-400 focus:shadow-outline"
-            value={categoryName}
-            onChange={(e) => SetCategoryName(e.target.value)}
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
             autoFocus
           />
         </div>
+        <div className="pb-4 w-full">
+          <textarea
+            id="collectionDescription"
+            name="collectionDescription"
+            required
+            placeholder="Collection description"
+            className="shadow appearance-none border rounded-lg h-auto min-h-[106px] w-full text-wrap px-3 py-2 text-gray-900 leading-tight focus:outline-yellow-400 focus:shadow-outline"
+            value={collectionDescription}
+            onChange={(e) => setCollectionDescription(e.target.value)}
+            autoFocus
+          />
+        </div>
+
+        <div className="pb-4 w-full ">
+          <FormPropsDateTimePickers
+            value={collectionTiming}
+            onChange={handleDateChange}
+          />
+        </div>
+        <div className="text-[22px] pb-1 mr-auto font-medium text-[#464646]">
+          Add cover photo
+        </div>
+        <div className="pb-4 w-full">
+        <div
+          className="flex items-center overflow-hidden relative justify-center h-[156px] w-[65%] rounded-[5px] bg-[#D9D9D9]"
+          onClick={() =>
+            !coverImage && document.getElementById("coverImage-upload").click()
+          }
+        >
+          {coverImage ? (
+            <>
+              <img
+                src={coverImage}
+                alt="coverImagePreview"
+                className="h-full w-full object-cover"
+              />
+              <button
+                className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent triggering the file input
+                  removeCoverImage();
+                }}
+              >
+                &times;
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="flex flex-col items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 44 44"
+                  fill="none"
+                >
+                  <path
+                    d="M20.8084 31.075H23.4668V23.5125H31.0751V20.8083H23.4668V12.925H20.8084V20.8083H12.9251V23.5125H20.8084V31.075ZM22.0001 40.15C19.4945 40.15 17.1418 39.6688 14.9418 38.7063C12.7418 37.7438 10.8244 36.4451 9.18968 34.8104C7.55496 33.1757 6.25635 31.2583 5.29385 29.0583C4.33135 26.8583 3.8501 24.5056 3.8501 22C3.8501 19.4945 4.33135 17.134 5.29385 14.9188C6.25635 12.7035 7.5626 10.7785 9.2126 9.14376C10.8626 7.50903 12.78 6.21806 14.9647 5.27084C17.1494 4.32362 19.4945 3.85001 22.0001 3.85001C24.5057 3.85001 26.8661 4.32362 29.0814 5.27084C31.2966 6.21806 33.2216 7.50903 34.8563 9.14376C36.4911 10.7785 37.782 12.7035 38.7293 14.9188C39.6765 17.134 40.1501 19.4945 40.1501 22C40.1501 24.5361 39.6765 26.8889 38.7293 29.0583C37.782 31.2278 36.4911 33.1375 34.8563 34.7875C33.2216 36.4375 31.2966 37.7438 29.0814 38.7063C26.8661 39.6688 24.5057 40.15 22.0001 40.15Z"
+                    fill="#707070"
+                  />
+                </svg>
+                {/* <p className="text-black">Click to upload coverImage</p> */}
+              </div>
+            </>
+          )}
+          <input
+            required
+            type="file"
+            id="coverImage-upload"
+            className="hidden"
+            onChange={handleCoverImageUpload}
+          />
+        </div>
+        </div>
+
         <div className="text-[22px] mr-auto font-medium text-[#464646]">
           Add products
         </div>
@@ -155,9 +267,7 @@ function AddCategory() {
                 htmlFor="coverUpload"
                 className="cursor-pointer flex flex-col items-center"
               >
-                <button
-                  onClick={() => navigate("/label/addProduct")}     
-                  >
+                <button onClick={() => navigate("/label/addProduct")}>
                   <div className="flex flex-col items-center">
                     <img src={plus} alt="" />
                   </div>
@@ -207,10 +317,10 @@ function AddCategory() {
         <div className="w-full fixed pb-2 bottom-6 px-4 left-1/2 transform -translate-x-1/2 translate-y-1/2 text-center">
           <div
             className={`
-             transition-opacity duration-300 ease-in-out
-             ${showError ? "opacity-100" : "opacity-0"}
-             text-red-500 mb-4 text-base font-medium fixed  bottom-12 px-4 left-1/2 transform -translate-x-1/2 translate-y-1/2 text-center
-           `}
+                 transition-opacity duration-300 ease-in-out
+                 ${showError ? "opacity-100" : "opacity-0"}
+                 text-red-500 mb-4 text-base font-medium fixed  bottom-12 px-4 left-1/2 transform -translate-x-1/2 translate-y-1/2 text-center
+               `}
           >
             {errorMessage}
           </div>
@@ -220,7 +330,7 @@ function AddCategory() {
             }`}
             onClick={handleContinue}
           >
-            Add category
+            Add collection
           </button>
         </div>
       </div>
@@ -228,4 +338,4 @@ function AddCategory() {
   );
 }
 
-export default AddCategory;
+export default AddCollection;

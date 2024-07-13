@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Onboarding() {
+  
   const [storeName, setStoreName] = useState("");
   const [bio, setBio] = useState("");
   const navigate = useNavigate();
@@ -106,8 +107,10 @@ const resetFileInput = (event) => {
     <div className="bg-white w-full h-screen relative">
       <div className="p-4 h-[80px] w-full flex items-center justify-center ">
         <div>
-          <Link to="/decidingUser">
-            <button className="">
+          {/* <Link to="/decidingUser"> */}
+            <button
+             onClick={() => navigate(-1)}
+            className="">
               <svg
                 width="29"
                 height="29"
@@ -148,7 +151,7 @@ const resetFileInput = (event) => {
                 </g>
               </svg>
             </button>
-          </Link>
+          {/* </Link> */}
         </div>
         <div className="text-center text-[30px] font-medium w-full">
           Create a store
@@ -156,7 +159,7 @@ const resetFileInput = (event) => {
       </div>
       <div className="h-[20vh] relative">
         <div
-          className="flex items-center justify-center h-full bg-[#D9D9D9]"
+          className="flex items-center justify-center overflow-hidden h-full bg-[#D9D9D9]"
           onClick={() =>
             !banner && document.getElementById("banner-upload").click()
           }
@@ -193,7 +196,7 @@ const resetFileInput = (event) => {
                     fill="#707070"
                   />
                 </svg>
-                <p className="text-black">Click to upload banner</p>
+                {/* <p className="text-black">Click to upload banner</p> */}
               </div>
             </>
           )}

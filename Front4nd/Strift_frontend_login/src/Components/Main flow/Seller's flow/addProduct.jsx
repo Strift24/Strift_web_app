@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate  } from "react-router-dom";
 
 function AddProduct() {
+
+  const navigate = useNavigate()
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [images, setImages] = useState([]);
@@ -249,6 +251,7 @@ function AddProduct() {
       { id: "5", name: "Vintage" },
     ],
   });
+
   const [newItem, setNewItem] = useState({ categories: "", tags: "" });
   const [isAdding, setIsAdding] = useState({ categories: false, tags: false });
 
@@ -356,8 +359,11 @@ function AddProduct() {
       <div className="relative h-[550px] bg-[#D9D9D9]">
         {/* ////// */}
         <div className="flex z-[99999] justify-between items-center text-white fixed top-0 left-0 p-6">
-          <Link to="/label/onBoarding">
-            <button className="">
+          {/* <Link to="/label/onBoarding"> */}
+
+            <button
+             onClick={() => navigate(-1)}
+            >
               <svg
                 className="font-bold"
                 width="29"
@@ -399,7 +405,7 @@ function AddProduct() {
                 </g>
               </svg>
             </button>
-          </Link>
+          {/* </Link> */}
         </div>
         <div className="flex items-center justify-center h-full relative">
           <input

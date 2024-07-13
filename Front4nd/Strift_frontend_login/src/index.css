@@ -60,4 +60,36 @@ body {
 }
 
 
+/* Date and time picker */
 
+.react-datepicker {
+    font-family: inherit;
+    border-radius: 0.375rem; /* Same as Tailwind's rounded-md */
+    border-color: #d1d5db; /* Tailwind's border-gray-300 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Tailwind's shadow-sm */
+  }
+  
+  .react-datepicker__header {
+    background-color: #f9fafb; /* Tailwind's bg-gray-100 */
+    border-bottom: 1px solid #d1d5db; /* Tailwind's border-gray-300 */
+  }
+  
+  .react-datepicker__current-month,
+  .react-datepicker-time__header {
+    font-size: 0.875rem; /* Tailwind's text-sm */
+    color: #374151; /* Tailwind's text-gray-700 */
+  }
+  
+  .react-datepicker__day-name,
+  .react-datepicker__day,
+  .react-datepicker__time-name {
+    font-size: 0.875rem; /* Tailwind's text-sm */
+    color: #374151; /* Tailwind's text-gray-700 */
+  }
+  
+  .react-datepicker__day--selected,
+  .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+    background-color: #3b82f6; /* Tailwind's bg-blue-500 */
+    color: #fff; /* Tailwind's text-white */
+  }
+  
