@@ -112,7 +112,7 @@ function Discover() {
     try {
       //Make the backend code
       setTimeout(() => {
-        const response = selectedStores.length >= 3;
+        const response = selectedStores.length >= 5;
         if (response) {
           console.log("success");
           navigate("/buyer/home");
@@ -172,14 +172,14 @@ function Discover() {
             <button
               onClick={handleContinue}
               className={` px-[36px] py-2 rounded-3xl shadow-lg ${
-                selectedStores.length >= 3
+                selectedStores.length >= 5
                   ? "bg-black text-white cursor-pointer animate-floatUp"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed hidden"
               } `}
-              disabled={selectedStores.length < 3}
+              disabled={selectedStores.length < 5}
               style={{
                 animation:
-                  selectedStores.length >= 3 ? "floatUp 0.6s ease-in" : "none",
+                  selectedStores.length >= 5 ? "floatUp 0.6s ease-in" : "none",
               }}
             >
               Continue ({selectedStores.length})

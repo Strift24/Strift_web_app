@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import CustomSlider from "./customSlider";
-
+import { useNavigate } from "react-router-dom";
 
 function Post({ storeData }) {
+
+  const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
   const handleLike = () => {
     setLiked(!liked);
@@ -10,13 +12,17 @@ function Post({ storeData }) {
 
   return (
     <div className="bg-white flex-col gap-0 w-full h-auto mb-3">
-      <div id="image slider" className="h-[474px] flex-shrink-0">
+      <div
+      id="image slider" className="h-[474px] flex-shrink-0">
         <CustomSlider storeimages={storeData.images} />
       </div>
 
       <div className="py-1 px-3 flex-col gap-2 w-full">
         <div className="flex justify-between items-center">
-          <div className="relative flex items-center gap-2">
+          <button 
+          // Redirect to the shop page
+          onClick={() => navigate('/buyer/shop')}
+           className="relative flex items-center gap-2">
             <div className="absolute top-[-20px] bg-white rounded-lg left-0 flex-shrink-0">
               <svg
                 className="rounded-lg shadow-gray w-[57px] h-[54px] object-cover"
@@ -66,7 +72,7 @@ m160 -36 c10 -12 7 -17 -16 -26 -28 -10 -109 -8 -121 4 -3 4 -3 13 0 22 9 21
                 </svg>
               </div>
             </div>
-          </div>
+          </button>
           <div className="flex gap-3 items-center">
             <div className="flex items-center">
               <button onClick={handleLike} className="w-6 focus:outline-none">
@@ -75,7 +81,7 @@ m160 -36 c10 -12 7 -17 -16 -26 -28 -10 -109 -8 -121 4 -3 4 -3 13 0 22 9 21
                   fill={liked ? "#ed1b24" : "none"}
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={liked ? "0":"1.6"}
+                  strokeWidth={liked ? "0" : "1.6"}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >

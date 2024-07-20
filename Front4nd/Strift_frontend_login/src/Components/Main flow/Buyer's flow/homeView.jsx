@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Post from "./post";
 
 function Home() {
+
+  const navigate = useNavigate()
 
   const postsData = [
     {
@@ -42,7 +44,7 @@ function Home() {
       commentsCount: '334',
     },
   ]
-
+  
 
   return (
     <main className="bg-white h-screen">
@@ -114,7 +116,7 @@ function Home() {
             </div>
           </button>
         </div>
-        <div className="flex-shrink-0 w-[37px] h-[37px] p-2 rounded-full flex items-center justify-center  bg-[#252525]">
+        <button onClick={() => navigate('/buyer/cart')} className="flex-shrink-0 w-[37px] h-[37px] p-2 rounded-full flex items-center justify-center  bg-[#252525]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="22"
@@ -127,14 +129,10 @@ function Home() {
               fill="white"
             />
           </svg>
-        </div>
-        <div className="flex-shrink-0 w-[37px] h-[37px] flex items-center justify-center">
-          <img
-            className="rounded-full object-cover"
-            src="https://s3-alpha-sig.figma.com/img/f62a/0334/b180f33352ad67db1d587f6689f066a1?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oKsaqek~ZeDYFtdu3iR7u2GQdb6mHJ-JjUUS1DOO0-HS1QbW4-7pyeQcUpDNquyb8Lxs0YF~2~vZ-fCiisDF-q5ftJhekG7QXrR93b10ujqrxSZ9EibvOotBQUBgoIDKNcWc-2R9Z-mgs-~5khOcOluf8TrrebmvYIYGi79VWSXLMgnY~4qk4NMaAnEImYOVey24N1Tik6qfuMQdmZksioR4QCpZN26vvt0p12BpAmkLLCSRHqW1L0Nyq3h4CcwnQTl~AIwz0KvEp-qEt5cU3MzOZ0u-U0nTSdN5DKKzDpv~NjHsw6LVSM9n2m~L9k8HmNRJqvTYIzk0eyRgxNCC0A__"
-            alt=""
-          />
-        </div>
+        </button>
+        <button onClick={() => navigate('/buyer/profile')} className="flex-shrink-0 w-[37px] h-[37px] bg-black rounded-full flex items-center justify-center">
+           <span className="text-white">A</span>                                {/* // ADD LOGO OF USER HERE */}
+        </button>
       </header>
       <div id="main" className="pt-[110px]">
 
@@ -145,7 +143,7 @@ function Home() {
         ) )}
 
       </div>
-      <div className="py-5 text-center bg-slate-500 text-black rounded-t-2xl">Made By Love From Delhi... STAY TUNED!!</div>
+      <div className="py-5 text-center bg-slate-700 text-white rounded-t-2xl">Made By Love From Delhi... STAY TUNED!!</div>
       
     </main>
   );

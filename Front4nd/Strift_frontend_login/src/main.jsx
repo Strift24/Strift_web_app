@@ -25,7 +25,6 @@ import DecidingUser from "./Components/Login flow/decidingUser.jsx";
 import ShopOnBoarding from "./Components/Main flow/Seller's flow/Onboarding.jsx";
 import AddProduct from "./Components/Main flow/Seller's flow/addProduct.jsx";
 import AddCategory from "./Components/Main flow/Seller's flow/addCategory.jsx";
-import SellerOrders from "./Components/Main flow/Seller's flow/sellerOrders.jsx";
 import WelcomeOnboard from "./Components/Main flow/Seller's flow/welcomeOnboard.jsx";
 import AddCollection from "./Components/Main flow/Seller's flow/addCollection.jsx";
 
@@ -56,7 +55,6 @@ const router = createBrowserRouter(
         <Route path="onBoarding" element={<ShopOnBoarding />} />
         <Route path="addProduct" element={<AddProduct />} />
         <Route path="addCategory" element={<AddCategory />} />
-        <Route path="sellerOrders" element={<SellerOrders />} />
         <Route path="welcomeOnboard" element={<WelcomeOnboard />} />
         <Route path="addCollection" element={<AddCollection />} />
       </Route>

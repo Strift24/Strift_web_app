@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import OtpInput from "otp-input-react";
 import "react-phone-input-2/lib/style.css";
 import { useState } from "react";
- 
+
 //IMPORTANT
 // theres some depreciation error with this otp react library so in future this may get effected**********************
 
@@ -79,7 +79,6 @@ function Otp() {
     };
   }, [resendFlow, timer]);
 
-
   // For Calling function
   const [buttonText, setButtonText] = useState("Call me instead");
   const [isVerifying, setIsVerifying] = useState(false);
@@ -88,19 +87,18 @@ function Otp() {
     if (isVerifying) return; // Prevent multiple clicks
 
     setIsVerifying(true);
-    setButtonText('Verifying, Please wait...');
+    setButtonText("Verifying, Please wait...");
 
     // Simulate verification process with a delay
     await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait 2 seconds
 
     setIsVerifying(false);
-    setButtonText('Verification complete!'); // Assuming successful verification
+    setButtonText("Verification complete!"); // Assuming successful verification
 
     // Delay navigation after verification message for 2 seconds
     setTimeout(() => {
-      navigate('/email'); // Navigate after delay
+      navigate("/email"); // Navigate after delay
     }, 2000);
-    
   };
 
   return (
@@ -168,8 +166,6 @@ function Otp() {
             />
           </div>
 
-          
-
           <div className="mr-[90px] mt-[20px]">
             <div className="text-[15px]  w-full flex gap-1 items-center justify-center py-2.5 text-white rounded">
               <div className="flex gap-2 flex-col items-center">
@@ -216,15 +212,20 @@ function Otp() {
               </svg>
 
               <span className="text-[14px] text-white font-medium">
-              {buttonText}
+                {buttonText}
               </span>
             </button>
           </div>
           <div className="w-full absolute pb-2 bottom-6 px-4 left-1/2 transform -translate-x-1/2 translate-y-1/2  text-center">
-          <button type="submit" disabled={disabled} onClick={handleOtpContinue} className="w-full bg-black  py-2 rounded-lg shadow-lg text-white">
-            Continue
-          </button>
-        </div>
+            <button
+              type="submit"
+              disabled={disabled}
+              onClick={handleOtpContinue}
+              className="w-full bg-black  py-2 rounded-lg shadow-lg text-white"
+            >
+              Continue
+            </button>
+          </div>
         </div>
       </div>
     </main>

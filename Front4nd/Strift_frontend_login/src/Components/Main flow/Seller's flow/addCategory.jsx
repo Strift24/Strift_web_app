@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import plus from "../../../assets/SellerAssets/plus.png";
 import c725b1eaf19e0f9d408d4fd1e3e3b5bd from "../../../assets/discover page/c725b1eaf19e0f9d408d4fd1e3e3b5bd.png";
 
@@ -9,24 +9,26 @@ function AddCategory() {
   const [errorMessage, setErrorMessage] = useState("");
   const [showError, setShowError] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
-  const dummyProducts = [
+  // Adding dummy products currently to display
+  const products = [
     {
-      id: 1,
+      id: 116,
       name: "T-Shirt",
       imageUrl:
         "https://s3-alpha-sig.figma.com/img/99a1/5406/8b53d2900d9edce24e8eefc62ae88f33?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=e2XJVW6c7chYQrv3OvDzWkUzsJgI3sSz1TTqRT03M6pI8vvoUXOxknbHMohqq~gpoInscsf5XALix29mqY-1T-e7983hSff5kyBjxrYxFd5Sn-xHbYhIu1Rrbm7DZboNYkLwb6~RDPhDI9AJfNPyffBTcA4ZK0py7QxlIUJw76baCQTTEEm40mlJ9sG7gEtUEXiDzapfVtIPElB4R8m5wSL8WfcLk2NuTRGqCrlHO0kh~BqKhbi8wpX0Jn3aW5vKvm0UtmtXLdZml0nKEaKcjyHHpARZ5mMV6ichBk7wn7VaeLFbLCqNtAmZM79lmksAqQXkEYofbFxtr6GGI3NCsg__",
     },
     { id: 2, name: "Jeans", imageUrl: c725b1eaf19e0f9d408d4fd1e3e3b5bd },
-    { id: 3, name: "Sneakers", imageUrl: c725b1eaf19e0f9d408d4fd1e3e3b5bd },
-    { id: 4, name: "Sneakers", imageUrl: c725b1eaf19e0f9d408d4fd1e3e3b5bd },
-    // Add more products as needed
+    { id: 333, name: "Sneakers", imageUrl: c725b1eaf19e0f9d408d4fd1e3e3b5bd },
+    { id: 964, name: "Sneakers", imageUrl: c725b1eaf19e0f9d408d4fd1e3e3b5bd },
   ];
-  const [products, setProducts] = useState(
-    dummyProducts ? dummyProducts : null
-  );
+
+  // const [products, setProducts] = useState(
+  //   dummyProducts ? dummyProducts : null
+  // );
+
   const [selectedProducts, setSelectedProducts] = useState([]);
 
-  useEffect(() => {}, [dummyProducts]); //  Replace the dummy products with the actual added products
+  useEffect(() => {}, [products]); //  Replace the dummy products with the actual added products
 
   const handleContinue = () => {
     if (!categoryName.trim()) {
@@ -44,6 +46,8 @@ function AddCategory() {
       // Your logic to add the category goes here
 
       console.log("Category added successfully");
+      console.log(categoryName);
+      console.log(selectedProducts);
     }
   };
 
@@ -54,6 +58,7 @@ function AddCategory() {
       } else {
         return [...prevSelected, productId];
       }
+
     });
   };
 
